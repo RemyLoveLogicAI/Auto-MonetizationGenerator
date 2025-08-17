@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Build output
+/dist
+
+# dotenv
+.env
+
+# PM2
+.pm2/
+logs/
+*.log
+
+# Wrangler local state
+.wrangler/
+
+# OS/IDE
+.DS_Store
+.idea/
+.vscode/
