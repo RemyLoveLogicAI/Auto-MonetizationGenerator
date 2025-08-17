@@ -1,0 +1,1 @@
+console.log('webapp static loaded')

@@ -5,7 +5,7 @@
   "pages_build_output_dir": "./dist",
   "compatibility_flags": [
     "nodejs_compat"
-  ]
+  ],
   // "vars": {
   //   "MY_VAR": "my-variable"
   // },
@@ -15,12 +15,12 @@
   //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
   //   }
   // ],
-  // "r2_buckets": [
-  //   {
-  //     "binding": "MY_BUCKET",
-  //     "bucket_name": "my-bucket"
-  //   }
-  // ],
+  "r2_buckets": [
+    {
+      "binding": "R2",
+      "bucket_name": "lovelogicai-assets"
+    }
+  ],
   // "d1_databases": [
   //   {
   //     "binding": "MY_DB",

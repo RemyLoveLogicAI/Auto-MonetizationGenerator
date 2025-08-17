@@ -1,0 +1,106 @@
+{
+  "generatedAt": "2025-08-17T08:36:30.919Z",
+  "count": 20,
+  "entries": [
+    {
+      "name": "Documentation_Master_Index.html",
+      "folder": "LoveLogicAI_Documentation/LoveLogicAI_Documentation/01_Master_Guides",
+      "url": "/static/assets/LoveLogicAI_Documentation/LoveLogicAI_Documentation/01_Master_Guides/Documentation_Master_Index.html"
+    },
+    {
+      "name": "Product_Documentation_Master_Guide.html",
+      "folder": "LoveLogicAI_Documentation/LoveLogicAI_Documentation/02_Product_Documentation",
+      "url": "/static/assets/LoveLogicAI_Documentation/LoveLogicAI_Documentation/02_Product_Documentation/Product_Documentation_Master_Guide.html"
+    },
+    {
+      "name": "Implementation_Legal_Compliance_Manual.html",
+      "folder": "LoveLogicAI_Documentation/LoveLogicAI_Documentation/03_Legal_Compliance",
+      "url": "/static/assets/LoveLogicAI_Documentation/LoveLogicAI_Documentation/03_Legal_Compliance/Implementation_Legal_Compliance_Manual.html"
+    },
+    {
+      "name": "Tax_Optimization_Revenue_Tracking_System.html",
+      "folder": "LoveLogicAI_Documentation/LoveLogicAI_Documentation/04_Tax_Optimization",
+      "url": "/static/assets/LoveLogicAI_Documentation/LoveLogicAI_Documentation/04_Tax_Optimization/Tax_Optimization_Revenue_Tracking_System.html"
+    },
+    {
+      "name": "Customer_Success_Metrics_Performance_Dashboard_Manual.html",
+      "folder": "LoveLogicAI_Documentation/LoveLogicAI_Documentation/05_Performance_Analytics",
+      "url": "/static/assets/LoveLogicAI_Documentation/LoveLogicAI_Documentation/05_Performance_Analytics/Customer_Success_Metrics_Performance_Dashboard_Manual.html"
+    },
+    {
+      "name": "Quick_Reference_Implementation_Guide.html",
+      "folder": "LoveLogicAI_Documentation/LoveLogicAI_Documentation/06_Implementation_Guides",
+      "url": "/static/assets/LoveLogicAI_Documentation/LoveLogicAI_Documentation/06_Implementation_Guides/Quick_Reference_Implementation_Guide.html"
+    },
+    {
+      "name": "Executive_Summary_Strategic_Overview.html",
+      "folder": "LoveLogicAI_Documentation/LoveLogicAI_Documentation/07_Executive_Summaries",
+      "url": "/static/assets/LoveLogicAI_Documentation/LoveLogicAI_Documentation/07_Executive_Summaries/Executive_Summary_Strategic_Overview.html"
+    },
+    {
+      "name": "AI_Agent_Deployment_Analysis_Report.html",
+      "folder": "LoveLogicAI_Products/LoveLogicAI_Products",
+      "url": "/static/assets/LoveLogicAI_Products/LoveLogicAI_Products/AI_Agent_Deployment_Analysis_Report.html"
+    },
+    {
+      "name": "ANALYTICS_COMMAND_CENTER.html",
+      "folder": "LoveLogicAI_Products/LoveLogicAI_Products",
+      "url": "/static/assets/LoveLogicAI_Products/LoveLogicAI_Products/ANALYTICS_COMMAND_CENTER.html"
+    },
+    {
+      "name": "FLAGSHIP_autonomous_revenue_toolkit_1497.html",
+      "folder": "LoveLogicAI_Products/LoveLogicAI_Products",
+      "url": "/static/assets/LoveLogicAI_Products/LoveLogicAI_Products/FLAGSHIP_autonomous_revenue_toolkit_1497.html"
+    },
+    {
+      "name": "ai_workflow_templates_497.html",
+      "folder": "LoveLogicAI_Products/LoveLogicAI_Products",
+      "url": "/static/assets/LoveLogicAI_Products/LoveLogicAI_Products/ai_workflow_templates_497.html"
+    },
+    {
+      "name": "collaboration_frameworks_297.html",
+      "folder": "LoveLogicAI_Products/LoveLogicAI_Products",
+      "url": "/static/assets/LoveLogicAI_Products/LoveLogicAI_Products/collaboration_frameworks_297.html"
+    },
+    {
+      "name": "market_intelligence_dashboard_397.html",
+      "folder": "LoveLogicAI_Products/LoveLogicAI_Products",
+      "url": "/static/assets/LoveLogicAI_Products/LoveLogicAI_Products/market_intelligence_dashboard_397.html"
+    },
+    {
+      "name": "nocode_integration_blueprints_197.html",
+      "folder": "LoveLogicAI_Products/LoveLogicAI_Products",
+      "url": "/static/assets/LoveLogicAI_Products/LoveLogicAI_Products/nocode_integration_blueprints_197.html"
+    },
+    {
+      "name": "complete_system_documentation.html",
+      "folder": "autonomous_monetization_engine/autonomous_monetization_engine/documentation",
+      "url": "/static/assets/autonomous_monetization_engine/autonomous_monetization_engine/documentation/complete_system_documentation.html"
+    },
+    {
+      "name": "live_dashboard.html",
+      "folder": "autonomous_monetization_engine/autonomous_monetization_engine/monitoring_dashboard",
+      "url": "/static/assets/autonomous_monetization_engine/autonomous_monetization_engine/monitoring_dashboard/live_dashboard.html"
+    },
+    {
+      "name": "business_strategy.html",
+      "folder": "lovelogicai_agent_os/lovelogicai_agent_os",
+      "url": "/static/assets/lovelogicai_agent_os/lovelogicai_agent_os/business_strategy.html"
+    },
+    {
+      "name": "technical_architecture.html",
+      "folder": "lovelogicai_agent_os/lovelogicai_agent_os",
+      "url": "/static/assets/lovelogicai_agent_os/lovelogicai_agent_os/technical_architecture.html"
+    },
+    {
+      "name": "dba_filing_package.html",
+      "folder": "project_chimera/project_chimera",
+      "url": "/static/assets/project_chimera/project_chimera/dba_filing_package.html"
+    },
+    {
+      "name": "execution_blueprint.html",
+      "folder": "project_chimera/project_chimera",
+      "url": "/static/assets/project_chimera/project_chimera/execution_blueprint.html"
+    }
+  ]
+}

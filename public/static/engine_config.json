@@ -1,0 +1,44 @@
+{
+  "market_intelligence": {
+    "scan_interval_minutes": 30,
+    "data_sources": [
+      "reddit",
+      "twitter",
+      "google_trends"
+    ],
+    "opportunity_threshold": 0.7,
+    "max_opportunities_per_scan": 10
+  },
+  "product_generation": {
+    "generation_interval_hours": 2,
+    "max_products_per_batch": 5,
+    "quality_threshold": 0.8,
+    "auto_publish": false
+  },
+  "marketing_automation": {
+    "campaign_interval_hours": 1,
+    "platforms": [
+      "twitter",
+      "linkedin",
+      "reddit"
+    ],
+    "content_types": [
+      "social_post",
+      "blog_article",
+      "email"
+    ],
+    "engagement_threshold": 0.6
+  },
+  "revenue_optimization": {
+    "analysis_interval_hours": 6,
+    "pricing_adjustment_threshold": 0.1,
+    "customer_segment_update_days": 7,
+    "auto_optimize": true
+  },
+  "system": {
+    "max_concurrent_tasks": 10,
+    "task_timeout_minutes": 60,
+    "state_save_interval_minutes": 5,
+    "error_notification_threshold": 5
+  }
+}

@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Deployment Dashboard - Comprehensive Analysis Report</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container { height: 400px; }
+        .small-chart-container { height: 300px; }
+        .page-break { page-break-inside: avoid; }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .status-indicator { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 8px; }
+        .status-optimal { background-color: #10b981; }
+        .status-warning { background-color: #f59e0b; }
+        .status-critical { background-color: #ef4444; }
+        .metric-card { transition: transform 0.2s; }
+        .metric-card:hover { transform: translateY(-2px); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <div class="gradient-bg text-white py-8">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold mb-2">
+                    <i class="fas fa-robot mr-3"></i>AI Agent Deployment Dashboard
+                </h1>
+                <h2 class="text-2xl font-light">Comprehensive Analysis Report</h2>
+                <p class="text-lg mt-2 opacity-90">LoveLogicAI Autonomous Revenue Optimization System</p>
+                <div class="mt-4 text-sm opacity-80">
+                    <i class="fas fa-calendar mr-2"></i>Generated: August 16, 2025
+                    <span class="mx-4">|</span>
+                    <i class="fas fa-server mr-2"></i>14 Active Agents
+                    <span class="mx-4">|</span>
+                    <i class="fas fa-chart-line mr-2"></i>System Status: Operational
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 py-8">
+        <!-- Executive Summary -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 page-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-chart-bar mr-3 text-blue-600"></i>Executive Summary
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">System Overview</h3>
+                    <p class="text-gray-600 mb-4">
+                        The LoveLogicAI autonomous AI agent deployment system is fully operational with 14 specialized agents 
+                        executing revenue optimization strategies. The system demonstrates exceptional performance with a mean 
+                        performance score of <strong>96.29/100</strong> and an average success rate of <strong>94.64%</strong>.
+                    </p>
+                    <p class="text-gray-600">
+                        All agents are currently active and executing their designated tasks, from micro-opportunity detection 
+                        to legal compliance monitoring, ensuring comprehensive coverage of the revenue optimization ecosystem.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="metric-card bg-green-50 p-4 rounded-lg border border-green-200">
+                        <div class="text-2xl font-bold text-green-600">96.29</div>
+                        <div class="text-sm text-green-700">Avg Performance Score</div>
+                    </div>
+                    <div class="metric-card bg-blue-50 p-4 rounded-lg border border-blue-200">
+                        <div class="text-2xl font-bold text-blue-600">94.64%</div>
+                        <div class="text-sm text-blue-700">Avg Success Rate</div>
+                    </div>
+                    <div class="metric-card bg-yellow-50 p-4 rounded-lg border border-yellow-200">
+                        <div class="text-2xl font-bold text-yellow-600">117%</div>
+                        <div class="text-sm text-yellow-700">CPU Usage</div>
+                    </div>
+                    <div class="metric-card bg-orange-50 p-4 rounded-lg border border-orange-200">
+                        <div class="text-2xl font-bold text-orange-600">94%</div>
+                        <div class="text-sm text-orange-700">Memory Usage</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Critical Alerts -->
+            <div class="mt-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <h4 class="text-lg font-semibold text-red-800 mb-2">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>Critical System Alert
+                </h4>
+                <p class="text-red-700">
+                    <strong>CPU Overload Detected:</strong> System CPU usage at 117% exceeds critical capacity. 
+                    Immediate optimization required to prevent performance degradation.
+                </p>
+            </div>
+        </div>
+
+        <!-- Performance Analytics -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 page-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-analytics mr-3 text-purple-600"></i>Performance Analytics
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Performance Score Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Success Rate Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="successChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4">Performance vs Success Rate Correlation</h3>
+                <div class="chart-container">
+                    <canvas id="correlationChart"></canvas>
+                </div>
+                <p class="text-gray-600 mt-4">
+                    <strong>Key Insight:</strong> Strong positive correlation (r = 0.983) between performance scores and success rates, 
+                    indicating that higher performing agents consistently deliver better results.
+                </p>
+            </div>
+
+            <!-- Top Performers Table -->
+            <div class="overflow-x-auto">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4">Top Performing Agents</h3>
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Agent</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Type</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Performance</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Success Rate</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium text-gray-900">MASTER-COORDINATOR-LAMBDA</td>
+                            <td class="px-6 py-4 text-sm text-gray-600">Central Command</td>
+                            <td class="px-6 py-4 text-sm"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full">100.0</span></td>
+                            <td class="px-6 py-4 text-sm"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full">99.9%</span></td>
+                            <td class="px-6 py-4 text-sm"><span class="status-indicator status-optimal"></span>COORDINATING</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium text-gray-900">LEGAL-GUARDIAN-IOTA</td>
+                            <td class="px-6 py-4 text-sm text-gray-600">Legal Compliance</td>
+                            <td class="px-6 py-4 text-sm"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full">99.0</span></td>
+                            <td class="px-6 py-4 text-sm"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full">99.8%</span></td>
+                            <td class="px-6 py-4 text-sm"><span class="status-indicator status-optimal"></span>ACTIVE</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium text-gray-900">COMM-HUB-MU</td>
+                            <td class="px-6 py-4 text-sm text-gray-600">Communication Hub</td>
+                            <td class="px-6 py-4 text-sm"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full">99.0</span></td>
+                            <td class="px-6 py-4 text-sm"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full">100.0%</span></td>
+                            <td class="px-6 py-4 text-sm"><span class="status-indicator status-optimal"></span>ACTIVE</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Resource Utilization Analysis -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 page-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-server mr-3 text-green-600"></i>Resource Utilization Analysis
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">CPU vs Memory Usage</h3>
+                    <div class="chart-container">
+                        <canvas id="resourceChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">System Resource Overview</h3>
+                    <div class="chart-container">
+                        <canvas id="systemResourceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resource Efficiency Table -->
+            <div class="overflow-x-auto">
+                <h3 class="text-xl font-semibold text-gray-700 mb-4">Resource Efficiency Rankings</h3>
+                <table class="min-w-full bg-white border border-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Agent</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">CPU %</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Memory %</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total Resources</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Efficiency Score</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium text-gray-900">MASTER-COORDINATOR-LAMBDA</td>
+                            <td class="px-6 py-4 text-sm">5%</td>
+                            <td class="px-6 py-4 text-sm">3%</td>
+                            <td class="px-6 py-4 text-sm">8%</td>
+                            <td class="px-6 py-4 text-sm"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full">12.5</span></td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium text-gray-900">SYSTEM-MONITOR-NU</td>
+                            <td class="px-6 py-4 text-sm">3%</td>
+                            <td class="px-6 py-4 text-sm">2%</td>
+                            <td class="px-6 py-4 text-sm">5%</td>
+                            <td class="px-6 py-4 text-sm"><span class="px-2 py-1 bg-green-100 text-green-800 rounded-full">19.6</span></td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium text-gray-900">CUSTOMER-MAGNET-KAPPA</td>
+                            <td class="px-6 py-4 text-sm">16%</td>
+                            <td class="px-6 py-4 text-sm">13%</td>
+                            <td class="px-6 py-4 text-sm">29%</td>
+                            <td class="px-6 py-4 text-sm"><span class="px-2 py-1 bg-red-100 text-red-800 rounded-full">3.2</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- System Health Assessment -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 page-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-heart mr-3 text-red-600"></i>System Health Assessment
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Agent Status Distribution</h3>
+                    <div class="chart-container">
+                        <canvas id="statusChart"></canvas>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Health Status Overview</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-green-50 rounded-lg">
+                            <div class="flex items-center">
+                                <span class="status-indicator status-optimal"></span>
+                                <span class="text-green-800 font-medium">Optimal Health</span>
+                            </div>
+                            <span class="text-green-600 font-bold">13 Agents</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-purple-50 rounded-lg">
+                            <div class="flex items-center">
+                                <span class="status-indicator" style="background-color: #8b5cf6;"></span>
+                                <span class="text-purple-800 font-medium">Master Status</span>
+                            </div>
+                            <span class="text-purple-600 font-bold">1 Agent</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-red-50 rounded-lg">
+                            <div class="flex items-center">
+                                <span class="status-indicator status-critical"></span>
+                                <span class="text-red-800 font-medium">System Overload</span>
+                            </div>
+                            <span class="text-red-600 font-bold">CPU: 117%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health Metrics -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="text-center p-6 bg-green-50 rounded-lg">
+                    <div class="text-3xl font-bold text-green-600 mb-2">100%</div>
+                    <div class="text-green-700">Agents Operational</div>
+                </div>
+                <div class="text-center p-6 bg-yellow-50 rounded-lg">
+                    <div class="text-3xl font-bold text-yellow-600 mb-2">117%</div>
+                    <div class="text-yellow-700">CPU Utilization</div>
+                </div>
+                <div class="text-center p-6 bg-blue-50 rounded-lg">
+                    <div class="text-3xl font-bold text-blue-600 mb-2">0.983</div>
+                    <div class="text-blue-700">Performance Correlation</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strategic Insights & Recommendations -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 page-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-lightbulb mr-3 text-yellow-600"></i>Strategic Insights & Recommendations
+            </h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Key Insights</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-blue-50 border-l-4 border-blue-500">
+                            <h4 class="font-semibold text-blue-800">Exceptional Performance</h4>
+                            <p class="text-blue-700 text-sm">96.29 average performance score indicates highly optimized agent algorithms</p>
+                        </div>
+                        <div class="p-4 bg-green-50 border-l-4 border-green-500">
+                            <h4 class="font-semibold text-green-800">Strong Correlation</h4>
+                            <p class="text-green-700 text-sm">0.983 correlation between performance and success validates system reliability</p>
+                        </div>
+                        <div class="p-4 bg-red-50 border-l-4 border-red-500">
+                            <h4 class="font-semibold text-red-800">Resource Constraint</h4>
+                            <p class="text-red-700 text-sm">117% CPU usage requires immediate attention to prevent bottlenecks</p>
+                        </div>
+                        <div class="p-4 bg-purple-50 border-l-4 border-purple-500">
+                            <h4 class="font-semibold text-purple-800">Functional Coverage</h4>
+                            <p class="text-purple-700 text-sm">Even distribution across all business domains ensures comprehensive optimization</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-semibold text-gray-700 mb-4">Priority Recommendations</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 bg-red-50 rounded-lg border border-red-200">
+                            <div class="flex items-start">
+                                <span class="flex-shrink-0 w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center text-xs font-bold">1</span>
+                                <div class="ml-3">
+                                    <h4 class="font-semibold text-red-800">Immediate CPU Optimization</h4>
+                                    <p class="text-red-700 text-sm">Deploy additional compute resources or optimize high-CPU agents</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                            <div class="flex items-start">
+                                <span class="flex-shrink-0 w-6 h-6 bg-yellow-600 text-white rounded-full flex items-center justify-center text-xs font-bold">2</span>
+                                <div class="ml-3">
+                                    <h4 class="font-semibold text-yellow-800">Resource Rebalancing</h4>
+                                    <p class="text-yellow-700 text-sm">Redistribute workload from high-resource agents to efficient ones</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                            <div class="flex items-start">
+                                <span class="flex-shrink-0 w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center text-xs font-bold">3</span>
+                                <div class="ml-3">
+                                    <h4 class="font-semibold text-blue-800">Performance Monitoring</h4>
+                                    <p class="text-blue-700 text-sm">Implement real-time alerts for performance degradation</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                            <div class="flex items-start">
+                                <span class="flex-shrink-0 w-6 h-6 bg-green-600 text-white rounded-full flex items-center justify-center text-xs font-bold">4</span>
+                                <div class="ml-3">
+                                    <h4 class="font-semibold text-green-800">Capacity Planning</h4>
+                                    <p class="text-green-700 text-sm">Develop scaling strategies for future agent deployments</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Plan -->
+        <div class="bg-white rounded-lg shadow-lg p-8 mb-8 page-break">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6">
+                <i class="fas fa-tasks mr-3 text-indigo-600"></i>Action Plan & Implementation
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-6 bg-red-50 rounded-lg">
+                    <h3 class="text-lg font-semibold text-red-800 mb-4">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>Immediate (24h)
+                    </h3>
+                    <ul class="space-y-2 text-red-700 text-sm">
+                        <li>• Scale CPU resources to handle 117% load</li>
+                        <li>• Monitor CUSTOMER-MAGNET-KAPPA (highest CPU usage)</li>
+                        <li>• Implement emergency throttling if needed</li>
+                        <li>• Set up real-time resource alerts</li>
+                    </ul>
+                </div>
+                
+                <div class="p-6 bg-yellow-50 rounded-lg">
+                    <h3 class="text-lg font-semibold text-yellow-800 mb-4">
+                        <i class="fas fa-clock mr-2"></i>Short-term (1 week)
+                    </h3>
+                    <ul class="space-y-2 text-yellow-700 text-sm">
+                        <li>• Optimize resource-heavy agents</li>
+                        <li>• Implement load balancing strategies</li>
+                        <li>• Review agent algorithms for efficiency</li>
+                        <li>• Deploy performance analytics dashboard</li>
+                    </ul>
+                </div>
+                
+                <div class="p-6 bg-green-50 rounded-lg">
+                    <h3 class="text-lg font-semibold text-green-800 mb-4">
+                        <i class="fas fa-calendar mr-2"></i>Long-term (1 month)
+                    </h3>
+                    <ul class="space-y-2 text-green-700 text-sm">
+                        <li>• Develop predictive scaling models</li>
+                        <li>• Implement agent specialization strategies</li>
+                        <li>• Create automated optimization protocols</li>
+                        <li>• Establish performance benchmarks</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-gray-800 text-white rounded-lg p-6">
+            <div class="text-center">
+                <h3 class="text-lg font-semibold mb-2">LoveLogicAI Autonomous Revenue Optimization System</h3>
+                <p class="text-gray-300 text-sm">
+                    This report provides comprehensive analysis of the AI agent deployment system. 
+                    For technical support or implementation assistance, contact the system administration team.
+                </p>
+                <div class="mt-4 text-xs text-gray-400">
+                    Report generated on August 16, 2025 | System Version 1.0 | 14 Active Agents
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Agent data
+        const agents = [
+            {name: 'REVENUE-OPTIMIZER-ALPHA', performance: 98.0, success: 98.5, cpu: 15, memory: 12, status: 'ACTIVE - EXECUTING'},
+            {name: 'MICRO-SCANNER-BETA', performance: 92.0, success: 87.3, cpu: 8, memory: 6, status: 'ACTIVE'},
+            {name: 'PRICE-OPTIMIZER-GAMMA', performance: 94.0, success: 91.2, cpu: 12, memory: 10, status: 'ACTIVE'},
+            {name: 'CONVERSION-BOOSTER-DELTA', performance: 96.0, success: 93.8, cpu: 10, memory: 8, status: 'ACTIVE'},
+            {name: 'MARKET-INTEL-EPSILON', performance: 93.0, success: 89.7, cpu: 14, memory: 11, status: 'ACTIVE'},
+            {name: 'TAX-OPTIMIZER-ZETA', performance: 97.0, success: 96.4, cpu: 7, memory: 5, status: 'ACTIVE'},
+            {name: 'PARTNERSHIP-HUNTER-ETA', performance: 91.0, success: 85.2, cpu: 11, memory: 9, status: 'ACTIVE'},
+            {name: 'ANALYTICS-MASTER-THETA', performance: 98.0, success: 99.1, cpu: 13, memory: 11, status: 'ACTIVE'},
+            {name: 'LEGAL-GUARDIAN-IOTA', performance: 99.0, success: 99.8, cpu: 6, memory: 4, status: 'ACTIVE'},
+            {name: 'CUSTOMER-MAGNET-KAPPA', performance: 94.0, success: 88.7, cpu: 16, memory: 13, status: 'ACTIVE'},
+            {name: 'MASTER-COORDINATOR-LAMBDA', performance: 100.0, success: 99.9, cpu: 5, memory: 3, status: 'ACTIVE - COORDINATING'},
+            {name: 'COMM-HUB-MU', performance: 99.0, success: 100.0, cpu: 4, memory: 2, status: 'ACTIVE'},
+            {name: 'SYSTEM-MONITOR-NU', performance: 98.0, success: 99.5, cpu: 3, memory: 2, status: 'ACTIVE'},
+            {name: 'AUTONOMOUS SYSTEM STATUS', performance: 99.0, success: 95.8, cpu: 0, memory: 0, status: 'FULLY OPERATIONAL'}
+        ];
+
+        // Performance Distribution Chart
+        const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+        new Chart(performanceCtx, {
+            type: 'bar',
+            data: {
+                labels: agents.map(a => a.name.split('-')[0]),
+                datasets: [{
+                    label: 'Performance Score',
+                    data: agents.map(a => a.performance),
+                    backgroundColor: 'rgba(99, 102, 241, 0.8)',
+                    borderColor: 'rgba(99, 102, 241, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+        // Success Rate Chart
+        const successCtx = document.getElementById('successChart').getContext('2d');
+        new Chart(successCtx, {
+            type: 'bar',
+            data: {
+                labels: agents.map(a => a.name.split('-')[0]),
+                datasets: [{
+                    label: 'Success Rate (%)',
+                    data: agents.map(a => a.success),
+                    backgroundColor: 'rgba(34, 197, 94, 0.8)',
+                    borderColor: 'rgba(34, 197, 94, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
+
+        // Correlation Chart
+        const correlationCtx = document.getElementById('correlationChart').getContext('2d');
+        new Chart(correlationCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'Performance vs Success Rate',
+                    data: agents.map(a => ({x: a.performance, y: a.success})),
+                    backgroundColor: 'rgba(168, 85, 247, 0.8)',
+                    borderColor: 'rgba(168, 85, 247, 1)',
+                    pointRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Performance Score'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Success Rate (%)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // Resource Usage Chart
+        const resourceCtx = document.getElementById('resourceChart').getContext('2d');
+        new Chart(resourceCtx, {
+            type: 'scatter',
+            data: {
+                datasets: [{
+                    label: 'CPU vs Memory Usage',
+                    data: agents.filter(a => a.cpu > 0).map(a => ({x: a.cpu, y: a.memory})),
+                    backgroundColor: 'rgba(239, 68, 68, 0.8)',
+                    borderColor: 'rgba(239, 68, 68, 1)',
+                    pointRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'CPU Usage (%)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Memory Usage (%)'
+                        }
+                    }
+                }
+            }
+        });
+
+        // System Resource Chart
+        const systemResourceCtx = document.getElementById('systemResourceChart').getContext('2d');
+        new Chart(systemResourceCtx, {
+            type: 'bar',
+            data: {
+                labels: ['CPU Usage', 'Memory Usage'],
+                datasets: [{
+                    label: 'System Resources (%)',
+                    data: [117, 94],
+                    backgroundColor: ['rgba(239, 68, 68, 0.8)', 'rgba(245, 158, 11, 0.8)'],
+                    borderColor: ['rgba(239, 68, 68, 1)', 'rgba(245, 158, 11, 1)'],
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 130
+                    }
+                },
+                plugins: {
+                    annotation: {
+                        annotations: {
+                            line1: {
+                                type: 'line',
+                                yMin: 100,
+                                yMax: 100,
+                                borderColor: 'red',
+                                borderWidth: 2,
+                                borderDash: [5, 5],
+                                label: {
+                                    content: 'Critical Threshold',
+                                    enabled: true
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Status Distribution Chart
+        const statusCtx = document.getElementById('statusChart').getContext('2d');
+        const statusCounts = agents.reduce((acc, agent) => {
+            acc[agent.status] = (acc[agent.status] || 0) + 1;
+            return acc;
+        }, {});
+
+        new Chart(statusCtx, {
+            type: 'doughnut',
+            data: {
+                labels: Object.keys(statusCounts),
+                datasets: [{
+                    data: Object.values(statusCounts),
+                    backgroundColor: [
+                        'rgba(34, 197, 94, 0.8)',
+                        'rgba(239, 68, 68, 0.8)',
+                        'rgba(168, 85, 247, 0.8)',
+                        'rgba(59, 130, 246, 0.8)'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    </script>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDvVTMxuBlIlQe9LWMWAqWyCfccHt9bqhC1aVWT1fx7%2FSvBQi%2BvVQe%2BSD6pxj3NLjaWGNvJhvvLCJCG2mzE0l4l05O9oiliLkKJf2Fl2eLWpNSXF5%2BbEIoWrpY5Dh142dZ4d%2FOScGuLZiyrvpGOYI1oO%2BR28LNPMb88NLnN2YOuh0YJdnekvgGucBegDleG8dmKBrDP%2F1m%2Fs9FQEmleKQHtkNxCI0Je7P3ZJhk3HVfLSAzpEt5iu%2FwyDC8kCbQ980UKAynVgV8q171ZptH0aFJYCkdsdirAhrP1hrqQEHl3HSjQN7YeVB9P1e9CR4dp0Pkk5cUPSpRSB1GeDgeIXIz8K%2Bx27hfDLifsltIlm1ChXjTLvpIAPiuVMiR068%2FsrssukAXascoWtUHVn2tAIkV9L9P4RiXN%2B5ELt5%2FG49AVJ2w0zqAWULNx08b%2F0sysph6ELSNNU30U7GupelMRDCBmkpsJ%2FkkvIlWUBbKSqCxbMAxxm32MSqAcBBIQY4E8H%2FLAjRo76gx8mf35302N6fm3A%3D";
+        window.__genspark_locale = "en-US";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDvVTMxuBlIlQe9LWMWAqWyCfccHt9bqhC1aVWT1fx7/SvBQi+vVQe+SD6pxj3NLjaWGNvJhvvLCJCG2mzE0l4l05O9oiliLkKJf2Fl2eLWpNSXF5+bEIoWrpY5Dh142dZ4d/OScGuLZiyrvpGOYI1oO+R28LNPMb88NLnN2YOuh0YJdnekvgGucBegDleG8dmKBrDP/1m/s9FQEmleKQHtkNxCI0Je7P3ZJhk3HVfLSAzpEt5iu/wyDC8kCbQ980UKAynVgV8q171ZptH0aFJYCkdsdirAhrP1hrqQEHl3HSjQN7YeVB9P1e9CR4dp0Pkk5cUPSpRSB1GeDgeIXIz8K+x27hfDLifsltIlm1ChXjTLvpIAPiuVMiR068/srssukAXascoWtUHVn2tAIkV9L9P4RiXN+5ELt5/G49AVJ2w0zqAWULNx08b/0sysph6ELSNNU30U7GupelMRDCBmkpsJ/kkvIlWUBbKSqCxbMAxxm32MSqAcBBIQY4E8H/LAjRo76gx8mf35302N6fm3A=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    

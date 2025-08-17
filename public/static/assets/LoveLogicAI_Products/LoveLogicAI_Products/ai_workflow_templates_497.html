@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Workflow Templates - LoveLogicAI</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .roi-chart { height: 400px; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="gradient-bg text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold">LoveLogicAI</div>
+                <nav class="space-x-6">
+                    <a href="#features" class="hover:text-yellow-300">Features</a>
+                    <a href="#roi" class="hover:text-yellow-300">ROI Calculator</a>
+                    <a href="#pricing" class="hover:text-yellow-300">Pricing</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl font-bold mb-6">AI Workflow Templates</h1>
+            <h2 class="text-2xl mb-8">Transform Your Business Operations in 24 Hours</h2>
+            <p class="text-xl mb-10 max-w-3xl mx-auto">Pre-built, battle-tested AI workflow templates that automate your most time-consuming processes. Deploy enterprise-grade automation without coding or complex setup.</p>
+            <div class="bg-yellow-400 text-black px-8 py-4 rounded-lg inline-block font-bold text-lg">
+                <i class="fas fa-clock mr-2"></i>Limited Time: $497 (Save 50% - Regular Price $994)
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="bg-blue-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-rocket text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Deploy in Minutes</h3>
+                    <p class="text-gray-600">No coding required. Import templates and start automating immediately.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-green-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chart-line text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Proven ROI</h3>
+                    <p class="text-gray-600">Average 300% productivity increase within first month of implementation.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-purple-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-cogs text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Enterprise Ready</h3>
+                    <p class="text-gray-600">Scalable templates used by Fortune 500 companies worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">What's Included in Your Template Library</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4"><i class="fas fa-envelope text-blue-600 mr-2"></i>Email Automation Suite</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Lead nurturing sequences (12 templates)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Customer onboarding flows (8 templates)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Re-engagement campaigns (6 templates)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Abandoned cart recovery (4 templates)</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4"><i class="fas fa-users text-green-600 mr-2"></i>Customer Service Automation</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>AI chatbot responses (50+ scenarios)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Ticket routing systems (10 templates)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>FAQ automation (20+ categories)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Escalation protocols (5 templates)</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4"><i class="fas fa-chart-bar text-purple-600 mr-2"></i>Sales & Marketing Workflows</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Lead scoring algorithms (15 templates)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Social media automation (25 templates)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Content distribution (12 templates)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Pipeline management (8 templates)</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-4"><i class="fas fa-database text-red-600 mr-2"></i>Data Processing & Analytics</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Report generation (20+ templates)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Data cleaning workflows (10 templates)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>KPI dashboards (15 templates)</li>
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Predictive analytics (8 models)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Real-World Use Cases</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="border rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-4">E-commerce Business</h3>
+                    <p class="text-gray-600 mb-4">"Implemented the abandoned cart recovery template and saw 45% increase in recovered sales within 2 weeks."</p>
+                    <div class="bg-green-100 p-3 rounded">
+                        <strong>Result:</strong> $23,000 additional monthly revenue
+                    </div>
+                </div>
+                <div class="border rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-4">SaaS Startup</h3>
+                    <p class="text-gray-600 mb-4">"Customer onboarding templates reduced churn by 60% and support tickets by 40%."</p>
+                    <div class="bg-green-100 p-3 rounded">
+                        <strong>Result:</strong> $18,500 saved in support costs monthly
+                    </div>
+                </div>
+                <div class="border rounded-lg p-6">
+                    <h3 class="text-xl font-bold mb-4">Marketing Agency</h3>
+                    <p class="text-gray-600 mb-4">"Social media automation templates freed up 20 hours/week for strategic work."</p>
+                    <div class="bg-green-100 p-3 rounded">
+                        <strong>Result:</strong> 3x client capacity without hiring
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ROI Calculator -->
+    <section id="roi" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">ROI Calculator</h2>
+            <div class="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-2xl font-bold mb-6">Conservative Estimates</h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between">
+                                <span>Time Saved per Week:</span>
+                                <span class="font-bold">15 hours</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Hourly Rate:</span>
+                                <span class="font-bold">$50/hour</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Weekly Savings:</span>
+                                <span class="font-bold text-green-600">$750</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span>Monthly Savings:</span>
+                                <span class="font-bold text-green-600">$3,250</span>
+                            </div>
+                            <div class="flex justify-between border-t pt-2">
+                                <span>Annual ROI:</span>
+                                <span class="font-bold text-green-600 text-xl">7,856%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="roi-chart">
+                        <canvas id="roiChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 bg-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-12">Investment Options</h2>
+            <div class="max-w-md mx-auto">
+                <div class="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-8 rounded-lg shadow-xl">
+                    <div class="mb-4">
+                        <span class="text-sm">Limited Time Offer</span>
+                        <h3 class="text-3xl font-bold">Complete Template Library</h3>
+                    </div>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">$497</span>
+                        <span class="text-lg line-through opacity-75 ml-2">$994</span>
+                    </div>
+                    <ul class="text-left mb-8 space-y-2">
+                        <li><i class="fas fa-check mr-2"></i>200+ Pre-built Templates</li>
+                        <li><i class="fas fa-check mr-2"></i>Video Implementation Guides</li>
+                        <li><i class="fas fa-check mr-2"></i>30-Day Money-Back Guarantee</li>
+                        <li><i class="fas fa-check mr-2"></i>Lifetime Updates</li>
+                        <li><i class="fas fa-check mr-2"></i>Priority Email Support</li>
+                    </ul>
+                    <button class="bg-yellow-400 text-black px-8 py-4 rounded-lg font-bold text-lg w-full hover:bg-yellow-300">
+                        Get Instant Access Now
+                    </button>
+                    <p class="text-sm mt-4 opacity-75">85% Profit Margin • Instant Download</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">What Our Customers Say</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <div class="flex mb-4">
+                        <div class="text-yellow-400">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="mb-4">"These templates saved me 6 months of development time. The ROI was immediate."</p>
+                    <div class="font-bold">Sarah Chen, Tech Startup CEO</div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <div class="flex mb-4">
+                        <div class="text-yellow-400">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="mb-4">"Incredible value. We've automated 80% of our repetitive tasks using these workflows."</p>
+                    <div class="font-bold">Michael Rodriguez, Operations Director</div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <div class="flex mb-4">
+                        <div class="text-yellow-400">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="mb-4">"Best investment we've made this year. Paid for itself in the first week."</p>
+                    <div class="font-bold">Jennifer Liu, Marketing Manager</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">Frequently Asked Questions</h2>
+            <div class="max-w-3xl mx-auto space-y-6">
+                <div class="border-b pb-4">
+                    <h3 class="text-xl font-bold mb-2">What platforms do these templates work with?</h3>
+                    <p class="text-gray-600">Templates are compatible with Zapier, Make.com, Microsoft Power Automate, and most major automation platforms.</p>
+                </div>
+                <div class="border-b pb-4">
+                    <h3 class="text-xl font-bold mb-2">Do I need technical skills to implement these?</h3>
+                    <p class="text-gray-600">No coding required. Each template includes step-by-step video guides for easy implementation.</p>
+                </div>
+                <div class="border-b pb-4">
+                    <h3 class="text-xl font-bold mb-2">How quickly can I see results?</h3>
+                    <p class="text-gray-600">Most customers see immediate time savings within 24-48 hours of implementation.</p>
+                </div>
+                <div class="border-b pb-4">
+                    <h3 class="text-xl font-bold mb-2">What if the templates don't work for my business?</h3>
+                    <p class="text-gray-600">30-day money-back guarantee. If you're not satisfied, we'll refund 100% of your investment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="gradient-bg text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold mb-6">Ready to Transform Your Business?</h2>
+            <p class="text-xl mb-8">Join 10,000+ businesses already automating with our templates</p>
+            <button class="bg-yellow-400 text-black px-12 py-4 rounded-lg font-bold text-xl hover:bg-yellow-300">
+                Get Instant Access - $497
+            </button>
+            <p class="mt-4">30-Day Money-Back Guarantee • Instant Download • Lifetime Updates</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <div class="mb-4">
+                <h3 class="text-2xl font-bold">LoveLogicAI</h3>
+                <p>Empowering businesses with AI automation solutions</p>
+            </div>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="hover:text-yellow-300"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="hover:text-yellow-300"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="hover:text-yellow-300"><i class="fab fa-facebook"></i></a>
+            </div>
+            <p class="mt-4 text-sm opacity-75">© 2024 LoveLogicAI. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ROI Chart
+        const ctx = document.getElementById('roiChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Month 1', 'Month 2', 'Month 3', 'Month 6', 'Month 12'],
+                datasets: [{
+                    label: 'Cumulative Savings ($)',
+                    data: [3250, 6500, 9750, 19500, 39000],
+                    borderColor: 'rgb(34, 197, 94)',
+                    backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }, {
+                    label: 'Initial Investment',
+                    data: [497, 497, 497, 497, 497],
+                    borderColor: 'rgb(239, 68, 68)',
+                    backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                    borderDash: [5, 5]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toLocaleString();
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'ROI Timeline: Investment vs Savings'
+                    },
+                    legend: {
+                        position: 'top'
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDqNsUnnguDBKzG%2FU3Ob%2FOQTHqdNN7b75nUB9USfrVJqYqmxyj702gZuHTDKR%2F1DywtCEjsyThbssAAjdL4yC3XaUJrzuzCALwefbZbWorujUBtZDcUkUAUYS0SyuPTYEoH%2FH%2BmFQXcBlnZVCRCsZdJnJkXUW2TFwnhs3iGpgScQHMdnCo59rtl285RhU5Ip%2B%2BtVD7lZj%2Bdv8l9dtY1x4j50OUchGnB9oIGRtngB5zKM2jZ9CH2YT8S89wBkzwtKePPZWJ%2FMAPB3lQjx%2BpLXKnM%2FrbBczTcKgNCGSP5JEp8JfqOkM4VcYGW%2Bn6cfFujrUbBZZD4kEbBoUProhOwMVt2gpMYqY6%2BCaX8khqtIqnScYfwyY0OqpLal4VcHfdiwug2Iy8UVKu2dsBhFOjKQr8u%2FY8OGtqAD3Ta2%2FgXZQHgnkjt53zS0eAuqr%2BEvwEWGKKMiB06RAuQNQMnNqg%2FuCf987awiBHjcU9rHwSWjIhh7c%2FL2BMl%2F6fTEUfACqrJazWpKfMv8IsczoUxTYVJReOfs%3D";
+        window.__genspark_locale = "en-US";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDqNsUnnguDBKzG/U3Ob/OQTHqdNN7b75nUB9USfrVJqYqmxyj702gZuHTDKR/1DywtCEjsyThbssAAjdL4yC3XaUJrzuzCALwefbZbWorujUBtZDcUkUAUYS0SyuPTYEoH/H+mFQXcBlnZVCRCsZdJnJkXUW2TFwnhs3iGpgScQHMdnCo59rtl285RhU5Ip++tVD7lZj+dv8l9dtY1x4j50OUchGnB9oIGRtngB5zKM2jZ9CH2YT8S89wBkzwtKePPZWJ/MAPB3lQjx+pLXKnM/rbBczTcKgNCGSP5JEp8JfqOkM4VcYGW+n6cfFujrUbBZZD4kEbBoUProhOwMVt2gpMYqY6+CaX8khqtIqnScYfwyY0OqpLal4VcHfdiwug2Iy8UVKu2dsBhFOjKQr8u/Y8OGtqAD3Ta2/gXZQHgnkjt53zS0eAuqr+EvwEWGKKMiB06RAuQNQMnNqg/uCf987awiBHjcU9rHwSWjIhh7c/L2BMl/6fTEUfACqrJazWpKfMv8IsczoUxTYVJReOfs=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    

@@ -1,0 +1,138 @@
+{
+  "generatedAt": "2025-08-17T08:19:36.577Z",
+  "entries": [
+    {
+      "type": "folder",
+      "name": "LoveLogicAI_Documentation",
+      "fileCount": 1,
+      "url": "/static/assets/LoveLogicAI_Documentation/"
+    },
+    {
+      "type": "zip",
+      "name": "LoveLogicAI_Documentation.zip",
+      "size": 27593,
+      "url": "/static/assets/LoveLogicAI_Documentation.zip"
+    },
+    {
+      "type": "folder",
+      "name": "LoveLogicAI_Products",
+      "fileCount": 1,
+      "url": "/static/assets/LoveLogicAI_Products/"
+    },
+    {
+      "type": "zip",
+      "name": "LoveLogicAI_Products.zip",
+      "size": 978006,
+      "url": "/static/assets/LoveLogicAI_Products.zip"
+    },
+    {
+      "type": "folder",
+      "name": "autonomous_monetization_engine",
+      "fileCount": 1,
+      "url": "/static/assets/autonomous_monetization_engine/"
+    },
+    {
+      "type": "zip",
+      "name": "autonomous_monetization_engine.zip",
+      "size": 9422962,
+      "url": "/static/assets/autonomous_monetization_engine.zip"
+    },
+    {
+      "type": "folder",
+      "name": "code_repositories",
+      "fileCount": 1,
+      "url": "/static/assets/code_repositories/"
+    },
+    {
+      "type": "zip",
+      "name": "code_repositories.zip",
+      "size": 971892,
+      "url": "/static/assets/code_repositories.zip"
+    },
+    {
+      "type": "folder",
+      "name": "lovelogicai_agent_os",
+      "fileCount": 1,
+      "url": "/static/assets/lovelogicai_agent_os/"
+    },
+    {
+      "type": "zip",
+      "name": "lovelogicai_agent_os.zip",
+      "size": 42476,
+      "url": "/static/assets/lovelogicai_agent_os.zip"
+    },
+    {
+      "type": "folder",
+      "name": "project_chimera",
+      "fileCount": 1,
+      "url": "/static/assets/project_chimera/"
+    },
+    {
+      "type": "zip",
+      "name": "project_chimera.zip",
+      "size": 491743,
+      "url": "/static/assets/project_chimera.zip"
+    },
+    {
+      "type": "folder",
+      "name": "rrl_project",
+      "fileCount": 1,
+      "url": "/static/assets/rrl_project/"
+    },
+    {
+      "type": "zip",
+      "name": "rrl_project.zip",
+      "size": 6356190,
+      "url": "/static/assets/rrl_project.zip"
+    },
+    {
+      "type": "external",
+      "name": "ai-tools-resources.zip",
+      "size": 743130897,
+      "url": "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/3dc67409-2d74-40f7-984f-5c5f4fb93729/44b87a44-7048-4c66-8aca-2432fc280703?se=2025-08-17T09%3A16%3A05Z&sp=r&sv=2025-05-05&sr=b&rsct=application/zip&sig=ZJA2KpphFoka9RWhcHjHqZ8E/hTsnt1G3hREP3CkH5k%3D"
+    },
+    {
+      "type": "external",
+      "name": "ai-tools-resources(1).zip",
+      "size": 743130897,
+      "url": "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/3dc67409-2d74-40f7-984f-5c5f4fb93729/f405b00b-fed4-464d-a1e7-baa919f3eab0?se=2025-08-17T09%3A16%3A05Z&sp=r&sv=2025-05-05&sr=b&rsct=application/zip&sig=4GrZpzN3FS04vHCVSufWfP97F96rGyQ24bt06OZ9zK0%3D"
+    },
+    {
+      "type": "external",
+      "name": "archive.zip",
+      "size": 688751342,
+      "url": "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/3dc67409-2d74-40f7-984f-5c5f4fb93729/c8f62b6d-cfe5-470d-8089-712889cf94c9?se=2025-08-17T09%3A16%3A05Z&sp=r&sv=2025-05-05&sr=b&rsct=application/zip&sig=LM5Hy4d0Qj4GMOXby%2BMfuS32PrP5gfkevc7uVvJG3Vo%3D"
+    },
+    {
+      "type": "external",
+      "name": "rabbit_r1_downloads.zip",
+      "size": 682395174,
+      "url": "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/3dc67409-2d74-40f7-984f-5c5f4fb93729/e897b4ec-e444-4fbf-9ab5-eb4ae0692c03?se=2025-08-17T09%3A16%3A05Z&sp=r&sv=2025-05-05&sr=b&rsct=application/zip&sig=hvhCLNwZ5VUkGMJHFDqR/VLTgQYpAGKL/WE67hx0E88%3D"
+    },
+    {
+      "type": "external",
+      "name": "cutting_edge_ai_arsenal.zip",
+      "size": 813856129,
+      "url": "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/3dc67409-2d74-40f7-984f-5c5f4fb93729/f2425174-1cd3-4771-a485-590b0ebb0753?se=2025-08-17T09%3A16%3A05Z&sp=r&sv=2025-05-05&sr=b&rsct=application/zip&sig=%2BF9HJYk/tEUt4WmqRtYfg0aGGaBmBemVgMyhB56dlok%3D"
+    },
+    {
+      "type": "external",
+      "name": "Meta-Quest-Developer-Hub-5.7.1.dmg(1).zip",
+      "size": 306787779,
+      "url": "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/3dc67409-2d74-40f7-984f-5c5f4fb93729/0e9292bb-11c6-474e-be3d-dd01398534ca?se=2025-08-17T09%3A16%3A05Z&sp=r&sv=2025-05-05&sr=b&rsct=application/zip&sig=GfrvePIK7gi3yMTrmoOUSSID0zSol1WZc0uR2o12rlM%3D"
+    },
+    {
+      "type": "external",
+      "name": "Meta-Quest-Developer-Hub-5.7.1.dmg.zip",
+      "size": 306704845,
+      "url": "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/3dc67409-2d74-40f7-984f-5c5f4fb93729/fff547c6-6d09-48da-b19c-9dc121b54491?se=2025-08-17T09%3A16%3A05Z&sp=r&sv=2025-05-05&sr=b&rsct=application/zip&sig=2dJsZpTGxyphJDwkZNzLJX%2BpPyzy00uxXzCZqGB5HVc%3D"
+    },
+    {
+      "type": "external",
+      "name": "EPORNER.COM - Tsukasa Aoi VR (2160p).mp4",
+      "size": 7186800683,
+      "url": "https://gensparkstorageprodwest.blob.core.windows.net/web-drive/3dc67409-2d74-40f7-984f-5c5f4fb93729/4442befb-1237-4097-ab89-007ceaf2bc2d?se=2025-08-17T09%3A16%3A05Z&sp=r&sv=2025-05-05&sr=b&rsct=video/mp4&sig=QL1dGXSAjyChf0/VupgaC5fqsGwKPZu5Oybi5lb81cw%3D",
+      "adult": true
+    }
+  ]
+}

@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoveLogicAI Analytics Command Center</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .metric-card { transition: all 0.3s ease; }
+        .metric-card:hover { transform: translateY(-2px); }
+        .chart-container { height: 300px; }
+        .status-green { color: #10B981; }
+        .status-red { color: #EF4444; }
+        .status-yellow { color: #F59E0B; }
+        .pulse-animation { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="container mx-auto px-4 py-6">
+        <!-- Header -->
+        <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-6 mb-6 text-white">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-3xl font-bold"><i class="fas fa-chart-line mr-3"></i>LoveLogicAI Analytics Command Center</h1>
+                    <p class="text-blue-100 mt-2">Real-time revenue optimization & performance tracking</p>
+                </div>
+                <div class="text-right">
+                    <div class="text-2xl font-bold">$47,892</div>
+                    <div class="text-blue-200">Total Revenue (MTD)</div>
+                    <div class="text-sm text-green-300 pulse-animation"><i class="fas fa-arrow-up"></i> +23.7% vs last month</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Performance Indicators -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+            <div class="metric-card bg-white rounded-lg shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-gray-500 text-sm font-medium">Daily Revenue</h3>
+                        <div class="text-2xl font-bold text-gray-900">$2,847</div>
+                        <div class="text-green-600 text-sm"><i class="fas fa-arrow-up"></i> +15.3%</div>
+                    </div>
+                    <div class="bg-green-500 rounded-full p-3 text-white">
+                        <i class="fas fa-dollar-sign text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metric-card bg-white rounded-lg shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-gray-500 text-sm font-medium">Conversion Rate</h3>
+                        <div class="text-2xl font-bold text-gray-900">7.2%</div>
+                        <div class="text-green-600 text-sm"><i class="fas fa-arrow-up"></i> +2.1%</div>
+                    </div>
+                    <div class="bg-blue-500 rounded-full p-3 text-white">
+                        <i class="fas fa-chart-bar text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metric-card bg-white rounded-lg shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-gray-500 text-sm font-medium">Active Customers</h3>
+                        <div class="text-2xl font-bold text-gray-900">1,247</div>
+                        <div class="text-green-600 text-sm"><i class="fas fa-arrow-up"></i> +8.4%</div>
+                    </div>
+                    <div class="bg-purple-500 rounded-full p-3 text-white">
+                        <i class="fas fa-users text-xl"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="metric-card bg-white rounded-lg shadow-lg p-6">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <h3 class="text-gray-500 text-sm font-medium">Profit Margin</h3>
+                        <div class="text-2xl font-bold text-gray-900">89.3%</div>
+                        <div class="text-green-600 text-sm"><i class="fas fa-arrow-up"></i> +1.2%</div>
+                    </div>
+                    <div class="bg-yellow-500 rounded-full p-3 text-white">
+                        <i class="fas fa-percentage text-xl"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Performance -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-trophy mr-2 text-yellow-500"></i>Product Performance</h2>
+                <div class="space-y-4">
+                    <div class="border-l-4 border-green-500 pl-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Autonomous Revenue Optimization Toolkit</h3>
+                                <p class="text-sm text-gray-600">Price: $1,497 | Margin: 92%</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-lg font-bold text-green-600">$18,712</div>
+                                <div class="text-sm text-gray-500">32 sales</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border-l-4 border-blue-500 pl-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-semibold text-gray-800">AI Workflow Templates</h3>
+                                <p class="text-sm text-gray-600">Price: $497 | Margin: 85%</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-lg font-bold text-blue-600">$12,425</div>
+                                <div class="text-sm text-gray-500">25 sales</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border-l-4 border-purple-500 pl-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Market Intelligence Dashboard</h3>
+                                <p class="text-sm text-gray-600">Price: $397 | Margin: 80%</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-lg font-bold text-purple-600">$7,940</div>
+                                <div class="text-sm text-gray-500">20 sales</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border-l-4 border-yellow-500 pl-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-semibold text-gray-800">Collaboration Frameworks</h3>
+                                <p class="text-sm text-gray-600">Price: $297 | Margin: 90%</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-lg font-bold text-yellow-600">$5,643</div>
+                                <div class="text-sm text-gray-500">19 sales</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="border-l-4 border-red-500 pl-4">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h3 class="font-semibold text-gray-800">No-Code Integration Blueprints</h3>
+                                <p class="text-sm text-gray-600">Price: $197 | Margin: 88%</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-lg font-bold text-red-600">$3,172</div>
+                                <div class="text-sm text-gray-500">16 sales</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-chart-pie mr-2 text-blue-500"></i>Revenue Distribution</h2>
+                <div class="chart-container">
+                    <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conversion Funnel & Opportunities -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-funnel-dollar mr-2 text-green-500"></i>Conversion Funnel</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-blue-500 rounded-full mr-3"></div>
+                            <span class="font-medium">Website Visitors</span>
+                        </div>
+                        <span class="font-bold">15,847</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-green-500 rounded-full mr-3"></div>
+                            <span class="font-medium">Landing Page Views</span>
+                        </div>
+                        <span class="font-bold">4,231</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-yellow-500 rounded-full mr-3"></div>
+                            <span class="font-medium">Add to Cart</span>
+                        </div>
+                        <span class="font-bold">847</span>
+                    </div>
+                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded">
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 bg-purple-500 rounded-full mr-3"></div>
+                            <span class="font-medium">Purchases</span>
+                        </div>
+                        <span class="font-bold">305</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-lightbulb mr-2 text-yellow-500"></i>Optimization Opportunities</h2>
+                <div class="space-y-3">
+                    <div class="p-3 border-l-4 border-green-500 bg-green-50">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-green-800">A/B Test Landing Page</h4>
+                                <p class="text-sm text-green-600">Potential +12% conversion increase</p>
+                            </div>
+                            <div class="text-green-600 font-bold">+$5,280/mo</div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-3 border-l-4 border-blue-500 bg-blue-50">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-blue-800">Email Sequence Optimization</h4>
+                                <p class="text-sm text-blue-600">Reduce cart abandonment by 8%</p>
+                            </div>
+                            <div class="text-blue-600 font-bold">+$3,150/mo</div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-3 border-l-4 border-purple-500 bg-purple-50">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-purple-800">Cross-sell Bundle Offers</h4>
+                                <p class="text-sm text-purple-600">Increase average order value</p>
+                            </div>
+                            <div class="text-purple-600 font-bold">+$4,720/mo</div>
+                        </div>
+                    </div>
+                    
+                    <div class="p-3 border-l-4 border-red-500 bg-red-50">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h4 class="font-semibold text-red-800">Retargeting Campaign</h4>
+                                <p class="text-sm text-red-600">Target high-intent visitors</p>
+                            </div>
+                            <div class="text-red-600 font-bold">+$2,890/mo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Real-time Activity & Tax Reporting -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-pulse mr-2 text-red-500"></i>Real-time Activity</h2>
+                <div class="space-y-3">
+                    <div class="flex items-center p-3 border rounded bg-green-50">
+                        <div class="w-3 h-3 bg-green-500 rounded-full mr-3 pulse-animation"></div>
+                        <div class="flex-1">
+                            <span class="font-medium">New sale: Autonomous Revenue Toolkit</span>
+                            <div class="text-sm text-gray-600">2 minutes ago • $1,497</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-3 border rounded">
+                        <div class="w-3 h-3 bg-blue-500 rounded-full mr-3"></div>
+                        <div class="flex-1">
+                            <span class="font-medium">Email campaign opened</span>
+                            <div class="text-sm text-gray-600">5 minutes ago • 247 opens</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-3 border rounded">
+                        <div class="w-3 h-3 bg-yellow-500 rounded-full mr-3"></div>
+                        <div class="flex-1">
+                            <span class="font-medium">Landing page optimization deployed</span>
+                            <div class="text-sm text-gray-600">12 minutes ago • Version 2.3</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-3 border rounded bg-green-50">
+                        <div class="w-3 h-3 bg-green-500 rounded-full mr-3 pulse-animation"></div>
+                        <div class="flex-1">
+                            <span class="font-medium">New sale: AI Workflow Templates</span>
+                            <div class="text-sm text-gray-600">18 minutes ago • $497</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-3 border rounded">
+                        <div class="w-3 h-3 bg-purple-500 rounded-full mr-3"></div>
+                        <div class="flex-1">
+                            <span class="font-medium">Partnership opportunity identified</span>
+                            <div class="text-sm text-gray-600">25 minutes ago • AI Platform XYZ</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-calculator mr-2 text-green-500"></i>Tax-Conscious Reporting</h2>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-gray-50 p-4 rounded">
+                        <h4 class="font-semibold text-gray-700">Gross Revenue</h4>
+                        <div class="text-2xl font-bold text-gray-900">$47,892</div>
+                        <div class="text-sm text-gray-600">Current month</div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded">
+                        <h4 class="font-semibold text-gray-700">Deductible Expenses</h4>
+                        <div class="text-2xl font-bold text-red-600">$4,127</div>
+                        <div class="text-sm text-gray-600">Software, hosting, ads</div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded">
+                        <h4 class="font-semibold text-gray-700">Net Profit</h4>
+                        <div class="text-2xl font-bold text-green-600">$43,765</div>
+                        <div class="text-sm text-gray-600">After deductions</div>
+                    </div>
+                    
+                    <div class="bg-gray-50 p-4 rounded">
+                        <h4 class="font-semibold text-gray-700">Est. Tax Liability</h4>
+                        <div class="text-2xl font-bold text-yellow-600">$10,504</div>
+                        <div class="text-sm text-gray-600">24% rate</div>
+                    </div>
+                </div>
+                
+                <div class="mt-4 p-3 bg-blue-50 border-l-4 border-blue-500">
+                    <h4 class="font-semibold text-blue-800">Tax Optimization Tips</h4>
+                    <ul class="text-sm text-blue-700 mt-2 space-y-1">
+                        <li>• Consider equipment purchases before year-end</li>
+                        <li>• Track all business-related software subscriptions</li>
+                        <li>• Document home office expenses</li>
+                        <li>• Set aside 25-30% for quarterly taxes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Monthly Trend Chart -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-chart-line mr-2 text-blue-500"></i>Revenue Trend Analysis</h2>
+            <div class="chart-container" style="height: 400px;">
+                <canvas id="trendChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Action Items & Documentation -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-tasks mr-2 text-orange-500"></i>Priority Action Items</h2>
+                <div class="space-y-3">
+                    <div class="flex items-center p-3 border rounded bg-red-50">
+                        <input type="checkbox" class="mr-3">
+                        <div class="flex-1">
+                            <span class="font-medium text-red-800">Deploy A/B test for main landing page</span>
+                            <div class="text-sm text-red-600">High priority • Est. revenue impact: +$5,280/mo</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-3 border rounded bg-yellow-50">
+                        <input type="checkbox" class="mr-3">
+                        <div class="flex-1">
+                            <span class="font-medium text-yellow-800">Set up quarterly tax payment schedule</span>
+                            <div class="text-sm text-yellow-600">Medium priority • Due: End of quarter</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-3 border rounded bg-green-50">
+                        <input type="checkbox" class="mr-3" checked>
+                        <div class="flex-1">
+                            <span class="font-medium text-green-800">Launch retargeting campaign</span>
+                            <div class="text-sm text-green-600">Completed • Revenue impact: +$2,890/mo</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center p-3 border rounded">
+                        <input type="checkbox" class="mr-3">
+                        <div class="flex-1">
+                            <span class="font-medium">Create cross-sell bundle offers</span>
+                            <div class="text-sm text-gray-600">Low priority • Research phase</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4"><i class="fas fa-file-alt mr-2 text-blue-500"></i>Documentation & Compliance</h2>
+                <div class="space-y-3">
+                    <div class="p-3 border rounded flex justify-between items-center">
+                        <div>
+                            <h4 class="font-semibold">Sales Records</h4>
+                            <p class="text-sm text-gray-600">All transactions documented</p>
+                        </div>
+                        <span class="status-green"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    
+                    <div class="p-3 border rounded flex justify-between items-center">
+                        <div>
+                            <h4 class="font-semibold">Expense Tracking</h4>
+                            <p class="text-sm text-gray-600">Auto-categorized & receipts stored</p>
+                        </div>
+                        <span class="status-green"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    
+                    <div class="p-3 border rounded flex justify-between items-center">
+                        <div>
+                            <h4 class="font-semibold">Customer Data Compliance</h4>
+                            <p class="text-sm text-gray-600">GDPR & CCPA compliant</p>
+                        </div>
+                        <span class="status-green"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    
+                    <div class="p-3 border rounded flex justify-between items-center">
+                        <div>
+                            <h4 class="font-semibold">Legal Documentation</h4>
+                            <p class="text-sm text-gray-600">Terms, privacy, refund policies</p>
+                        </div>
+                        <span class="status-green"><i class="fas fa-check-circle"></i></span>
+                    </div>
+                    
+                    <div class="p-3 border rounded flex justify-between items-center">
+                        <div>
+                            <h4 class="font-semibold">Tax Preparation</h4>
+                            <p class="text-sm text-gray-600">Q4 documentation in progress</p>
+                        </div>
+                        <span class="status-yellow"><i class="fas fa-clock"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-gray-800 rounded-lg p-6 text-white text-center">
+            <p class="text-lg font-semibold">LoveLogicAI Analytics Command Center</p>
+            <p class="text-gray-400 mt-2">Last updated: <span id="lastUpdated"></span> | Next refresh in: <span id="countdown">4:23</span></p>
+            <div class="mt-4 flex justify-center space-x-6">
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-green-400">99.9%</div>
+                    <div class="text-sm text-gray-400">System Uptime</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-blue-400">2.3s</div>
+                    <div class="text-sm text-gray-400">Avg Response Time</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-purple-400">847</div>
+                    <div class="text-sm text-gray-400">Active Sessions</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Revenue Distribution Chart
+        const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+        new Chart(revenueCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Autonomous Revenue Toolkit', 'AI Workflow Templates', 'Market Intelligence', 'Collaboration Frameworks', 'No-Code Blueprints'],
+                datasets: [{
+                    data: [18712, 12425, 7940, 5643, 3172],
+                    backgroundColor: ['#10B981', '#3B82F6', '#8B5CF6', '#F59E0B', '#EF4444'],
+                    borderWidth: 2,
+                    borderColor: '#ffffff'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            usePointStyle: true
+                        }
+                    }
+                }
+            }
+        });
+
+        // Trend Chart
+        const trendCtx = document.getElementById('trendChart').getContext('2d');
+        new Chart(trendCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+                datasets: [{
+                    label: 'Revenue',
+                    data: [28000, 32000, 35000, 41000, 38000, 43000, 45000, 47892],
+                    borderColor: '#3B82F6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }, {
+                    label: 'Profit',
+                    data: [25200, 28800, 31500, 36900, 34200, 38700, 40500, 43765],
+                    borderColor: '#10B981',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '$' + value.toLocaleString();
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Update timestamp and countdown
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('lastUpdated').textContent = now.toLocaleTimeString();
+            
+            // Countdown timer (simulated)
+            let seconds = 263; // 4:23
+            setInterval(() => {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                document.getElementById('countdown').textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+                seconds--;
+                if (seconds < 0) seconds = 300; // Reset to 5 minutes
+            }, 1000);
+        }
+
+        updateTime();
+    </script>
+</body>
+</html>
+    <script id="html_badge_script1">
+        window.__genspark_remove_badge_link = "https://www.genspark.ai/api/html_badge/" +
+            "remove_badge?token=To%2FBnjzloZ3UfQdcSaYfDvZcq6F1h9o8r19oLu%2FlRT8mp%2BT%2B2vGuDY1V8fIVrCNkBsIqSD%2B9xCCb6V1C%2Bm1OetaoaKpFTLiTupi5Y%2Bfumf2A3nFPjVX4WRq9yhl9JRVIFCN6sLkeszPI7LTpkM%2FtbFnki%2BFBrkQUT%2FmXwqsz8gUiACANe8kCi9YBamfgX6kR1nQAA7IGKR6ll4l1VdTVETgZ2Un1WEoZe2a8zOI7mPeAXqU%2BjGuymEkITVM4Zf%2B5WpzUEWppKe3eQjIy%2FhlvJtHhwfspEY%2BuNodMPBoGc9A7aTPH2jbifnXkjkjUdaKBAxfOCxL4tL7D6vG1VZh5aK71EExgFzt5PVrRGBwLKcz%2FeFuF%2B%2FgZ5jlFYUw19Q4LhbkjximQK9PpgEfuXBVtWL6kHRVjMVtfkvB5oCypvDT0D3OPEGjZ8AW3dpEg%2FwBMrybKneOOJf2I5o2waDATFT0qHZy7VqMyCdldqD5jwQTbbja5TGG1Ci1%2BOFQw30DWYNzMJomjYyzpkycaXl8FgrjoVTCnHbxCJGiNLgOalyw%3D";
+        window.__genspark_locale = "en-US";
+        window.__genspark_token = "To/BnjzloZ3UfQdcSaYfDvZcq6F1h9o8r19oLu/lRT8mp+T+2vGuDY1V8fIVrCNkBsIqSD+9xCCb6V1C+m1OetaoaKpFTLiTupi5Y+fumf2A3nFPjVX4WRq9yhl9JRVIFCN6sLkeszPI7LTpkM/tbFnki+FBrkQUT/mXwqsz8gUiACANe8kCi9YBamfgX6kR1nQAA7IGKR6ll4l1VdTVETgZ2Un1WEoZe2a8zOI7mPeAXqU+jGuymEkITVM4Zf+5WpzUEWppKe3eQjIy/hlvJtHhwfspEY+uNodMPBoGc9A7aTPH2jbifnXkjkjUdaKBAxfOCxL4tL7D6vG1VZh5aK71EExgFzt5PVrRGBwLKcz/eFuF+/gZ5jlFYUw19Q4LhbkjximQK9PpgEfuXBVtWL6kHRVjMVtfkvB5oCypvDT0D3OPEGjZ8AW3dpEg/wBMrybKneOOJf2I5o2waDATFT0qHZy7VqMyCdldqD5jwQTbbja5TGG1Ci1+OFQw30DWYNzMJomjYyzpkycaXl8FgrjoVTCnHbxCJGiNLgOalyw=";
+    </script>
+    
+    <script id="html_notice_dialog_script" src="https://www.genspark.ai/notice_dialog.js"></script>
+    
