@@ -6,26 +6,26 @@
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
 pydantic==2.5.0
-python-multipart==0.0.6
+python-multipart==0.0.18
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 
 # AI and Machine Learning Core
 openai==1.3.5
-langchain==0.0.335
-langchain-experimental==0.0.45
-langchain-community==0.0.6
-langchain-core==0.1.0
+langchain==0.3.0.dev1
+langchain-experimental==0.0.61
+langchain-community==0.2.9
+langchain-core==0.1.53
 langchain-openai==0.0.2
 langgraph==0.0.20
-transformers==4.35.2
-torch==2.1.1
+transformers==4.53.0
+torch==2.8.0
 torchvision==0.16.1
 torchaudio==2.1.1
 sentence-transformers==2.2.2
 numpy==1.24.3
 pandas==2.0.3
-scikit-learn==1.3.2
+scikit-learn==1.5.0
 
 # Voice Processing
 speechrecognition==3.10.0
@@ -38,7 +38,7 @@ azure-cognitiveservices-speech==1.34.0
 
 # Computer Vision
 opencv-python==4.8.1.78
-pillow==10.1.0
+pillow==10.3.0
 face-recognition==1.3.0
 mediapipe==0.10.8
 ultralytics==8.0.206
@@ -49,12 +49,12 @@ alembic==1.12.1
 sqlite3-to-mysql==2.1.7
 redis==5.0.1
 motor==3.3.2
-pymongo==4.6.0
+pymongo==4.6.3
 psycopg2-binary==2.9.9
 
 # Async and Concurrency
 asyncio==3.4.3
-aiohttp==3.9.1
+aiohttp==3.12.14
 aiofiles==23.2.1
 asyncpg==0.29.0
 celery==5.3.4
@@ -69,12 +69,12 @@ ipython==8.17.2
 
 # Natural Language Processing
 spacy==3.7.2
-nltk==3.8.1
+nltk==3.9
 textblob==0.17.1
 gensim==4.3.2
 
 # API and HTTP
-requests==2.31.0
+requests==2.32.4
 httpx==0.25.2
 websockets==12.0
 
@@ -91,10 +91,10 @@ sentry-sdk[fastapi]==1.38.0
 structlog==23.2.0
 
 # Security and Authentication
-cryptography==41.0.7
+cryptography==44.0.1
 bcrypt==4.1.2
 python-jwt==4.0.0
-authlib==1.2.1
+authlib==1.3.1
 
 # Testing
 pytest==7.4.3
@@ -105,7 +105,7 @@ httpx==0.25.2
 factory-boy==3.3.0
 
 # Development Tools
-black==23.11.0
+black==24.3.0
 flake8==6.1.0
 mypy==1.7.1
 pre-commit==3.6.0
@@ -116,7 +116,7 @@ python-dateutil==2.8.2
 pytz==2023.3
 click==8.1.7
 rich==13.7.0
-tqdm==4.66.1
+tqdm==4.66.3
 pathlib==1.0.1
 uuid==1.30
 hashlib==20081119
@@ -146,7 +146,7 @@ scikit-image==0.22.0
 moviepy==1.0.3
 
 # Deployment and Production
-gunicorn==21.2.0
+gunicorn==23.0.0
 docker==6.1.3
 kubernetes==28.1.0
 
@@ -194,7 +194,7 @@ bitsandbytes==0.41.3
 chromadb==0.4.18
 pinecone-client==2.2.4
 weaviate-client==3.25.3
-qdrant-client==1.7.0
+qdrant-client==1.9.0
 
 # Additional Utilities
 python-slugify==8.0.1
