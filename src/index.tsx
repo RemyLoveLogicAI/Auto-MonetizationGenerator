@@ -77,7 +77,7 @@ app.get('/library', (c) => {
         (function(){
           async function load(showAdult) {
             try {
-              const res = await fetch('/static/assets/assets.json');
+              const res = await fetch('/api/assets');
               const data = await res.json();
               const entries = data.entries || [];
               const list = entries.filter(e => showAdult || !e.adult);
@@ -157,12 +157,36 @@ app.post('/api/ingestR2', async (c) => {
   if (!url) return c.text('Missing url', 400)
   const res = await fetch(url)
   if (!res.ok) return c.text('Fetch failed: ' + res.status + ' ' + res.statusText, 502)
-  const buf = await res.arrayBuffer()
   const filename = key || (url.split('/').pop() || ('upload-' + Date.now()))
-  await env.R2.put(filename, buf, {
-    httpMetadata: { contentType: res.headers.get('content-type') || 'application/octet-stream' }
-  })
-  return c.json({ ok: true, key: filename, size: buf.byteLength, url: '/api/r2/' + filename })
+  const contentType = res.headers.get('content-type') || 'application/octet-stream'
+  const sizeHeader = res.headers.get('content-length')
+
+  // Prefer streaming in production (requires known length via FixedLengthStream)
+  try {
+    // @ts-ignore - FixedLengthStream is a Workers runtime global in production
+    const FLS = (globalThis as any).FixedLengthStream
+    if (sizeHeader && res.body && typeof FLS === 'function') {
+      const total = Number(sizeHeader)
+      // Guard against unreasonable values
+      if (!Number.isNaN(total) && total > 0) {
+        const { readable, writable } = new FLS(total)
+        // Start piping without awaiting to avoid buffering
+        // Note: In CF Workers, pipeTo returns a promise, but R2.put can consume readable concurrently
+        // We still await the pipe to complete before finishing
+        const piping = res.body.pipeTo(writable)
+        await env.R2.put(filename, readable, { httpMetadata: { contentType } })
+        await piping
+        return c.json({ ok: true, key: filename, size: total, streamed: true, url: '/api/r2/' + filename })
+      }
+    }
+  } catch (e) {
+    // Ignore and fall back to buffering
+  }
+
+  // Fallback: buffer (suitable for smaller files/local dev)
+  const buf = await res.arrayBuffer()
+  await env.R2.put(filename, buf, { httpMetadata: { contentType } })
+  return c.json({ ok: true, key: filename, size: buf.byteLength, streamed: false, url: '/api/r2/' + filename })
 })
 
 // CSV Explorer route
