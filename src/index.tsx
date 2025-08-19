@@ -2,6 +2,7 @@ import { Hono } from 'hono'
 import { renderer } from './renderer'
 import { serveStatic } from 'hono/cloudflare-workers'
 import { cors } from 'hono/cors'
+import { health } from './health'
 
 const app = new Hono()
 
@@ -307,6 +308,9 @@ app.get('/dashboards', (c) => {
     </div>
   )
 })
+
+// Health check endpoint for monitoring
+app.get('/api/health', health)
 
 // Simple Admin UI for R2 ingestion (client-side calls /api/ingestR2)
 app.get('/admin/ingest', (c) => {

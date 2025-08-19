@@ -1,0 +1,32 @@
+name = "auto-monetization-generator"
+compatibility_date = "2025-08-17"
+pages_build_output_dir = "./dist"
+
+[env.production]
+name = "auto-monetization-generator"
+
+[env.staging]
+name = "auto-monetization-generator-staging"
+
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "lovelogicai-assets"
+
+[build]
+command = "npm run build"
+
+[build.environment_variables]
+NODE_ENV = "production"
+
+# Deployment settings
+[deployment]
+compatibility_date = "2025-08-17"
+compatibility_flags = []
+
+# Analytics and monitoring
+[analytics_engine_datasets]
+
+# Custom domains (configure as needed)
+# [route]
+# pattern = "auto-monetization-generator.yourdomain.com/*"
+# zone_name = "yourdomain.com"
