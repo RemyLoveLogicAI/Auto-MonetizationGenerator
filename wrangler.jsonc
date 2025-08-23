@@ -1,1 +1,12 @@
-{\n  "$schema": "node_modules/wrangler/config-schema.json",\n  "name": "webapp",\n  "compatibility_date": "2025-08-17",\n  "pages_build_output_dir": "./dist",\n  "r2_buckets": [\n    {\n      "binding": "R2",\n      "bucket_name": "lovelogicai-assets"\n    }\n  ]\n}
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "automonetizationgenerator",
+  "compatibility_date": "2025-08-17",
+  "pages_build_output_dir": "./dist",
+  "r2_buckets": [
+    {
+      "binding": "R2",
+      "bucket_name": "lovelogicai-assets"
+    }
+  ]
+}
