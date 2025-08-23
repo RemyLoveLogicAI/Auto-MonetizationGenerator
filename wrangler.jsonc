@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "webapp",
+  "name": "automonetizationgenerator",
   "compatibility_date": "2025-08-17",
   "pages_build_output_dir": "./dist",
   "r2_buckets": [

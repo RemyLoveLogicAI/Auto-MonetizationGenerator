@@ -1,8 +1,38 @@
 import { Hono } from 'hono'
 import { renderer } from './renderer'
+import { MonitoringService } from './monitoring'
 import { serveStatic } from 'hono/cloudflare-workers'
 import { cors } from 'hono/cors'
+import { logger } from 'hono/logger'
+import { prettyJSON } from 'hono/pretty-json'
+import { secureHeaders } from 'hono/secure-headers'
+import { timing } from 'hono/timing'
+import { compress } from 'hono/compress'
+import { cache } from 'hono/cache'
+import { etag } from 'hono/etag'
+import { poweredBy } from 'hono/powered-by'
+import { requestId } from 'hono/request-id'
+import { trimTrailingSlash } from 'hono/trailing-slash'
+import { validator } from 'hono/validator'
+import { html } from 'hono/html'
+import { stream } from 'hono/streaming'
+import { streamSSE } from 'hono/streaming'
+import { HTTPException } from 'hono/http-exception'
+import { getCookie, setCookie } from 'hono/cookie'
+import { jwt } from 'hono/jwt'
+import { basicAuth } from 'hono/basic-auth'
+import { bearerAuth } from 'hono/bearer-auth'
+import { rateLimiter } from 'hono/rate-limiter'
+import { timeout } from 'hono/timeout'
+import { csrf } from 'hono/csrf'
+import { jsxRenderer } from 'hono/jsx-renderer'
+import { createMiddleware } from 'hono/factory'
+import { upgradeWebSocket } from 'hono/cloudflare-workers'
+import { zValidator } from '@hono/zod-validator'
+import { z } from 'zod'
 import { health } from './health'
+import { COMMIT_SHA, COMMIT_SHORT, BUILD_TIME } from './version'
+import { metrics, healthMetrics } from './metrics'
 
 const app = new Hono()
 
@@ -16,52 +46,92 @@ app.use('/api/*', cors())
 
 app.get('/', (c) => {
   return c.render(
-    <div style={{ padding: '24px', fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial' }}>
-      <h1>Reflective Reinforcement Learning (RRL)</h1>
-      <p style={{ marginTop: '8px', color: '#444' }}>A demo portal serving README + media assets.</p>
-      <p style={{ marginTop: '8px' }}>
-        <a href="/library" style={{ color: '#2563eb', textDecoration: 'underline', marginRight: '12px' }}>Browse Asset Library</a>
-        <a href="/dashboards" style={{ color: '#2563eb', textDecoration: 'underline', marginRight: '12px' }}>Dashboards</a>
-        <a href="/csv" style={{ color: '#2563eb', textDecoration: 'underline' }}>CSV Explorer</a>
-      </p>
-      <p style={{ marginTop: '8px' }}><a href="/library" style={{ color: '#2563eb', textDecoration: 'underline' }}>Browse Asset Library</a></p>
-
-      <section style={{ marginTop: '20px' }}>
-        <h2>README</h2>
-        <div id="readme" class="prose" style={{ background: '#fff', border: '1px solid #e5e7eb', borderRadius: '8px', padding: '16px', overflowX: 'auto' }}>Loading…</div>
-      </section>
-
-      <section style={{ marginTop: '24px' }}>
-        <h2>Demo Video</h2>
-        <video controls width="720" style={{ maxWidth: '100%', borderRadius: '8px', border: '1px solid #e5e7eb' }}>
-          <source src="/static/rrl_demo_video.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </section>
-
-      <section style={{ marginTop: '24px' }}>
-        <h2>Podcast</h2>
-        <audio controls style={{ width: '100%' }}>
-          <source src="/static/rrl_podcast.mp3" type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </audio>
-      </section>
-
-      <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-      <script dangerouslySetInnerHTML={{ __html: `
-        ;(async () => {
-          try {
-            const res = await fetch('/static/README.md')
-            const text = await res.text()
-            const html = marked.parse(text)
-            document.getElementById('readme').innerHTML = html
-          } catch (e) {
-            document.getElementById('readme').textContent = 'Failed to load README: ' + e
-          }
-        })()
-      ` }} />
-    </div>
-  )
+    <div className="page-wrapper">
+      <nav className="nav-header">
+        <div className="nav-container">
+          <div className="nav-brand">Auto-MonetizationGenerator</div>
+          <ul className="nav-links">
+            <li><a href="/api/health" className="nav-link">Health</a></li>
+            <li><a href="/api/metrics" className="nav-link">Metrics</a></li>
+            <li><a href="/dashboards" className="nav-link">Dashboards</a></li>
+            <li><a href="/admin/ingest" className="nav-link">Admin</a></li>
+          </ul>
+        </div>
+      </nav>
+      
+      <main className="main-content">
+        <div className="container">
+          <section className="section">
+            <div className="section-header animate-fade-in-up">
+              <h1 className="section-title">Auto-MonetizationGenerator</h1>
+              <p className="section-subtitle">
+                Advanced monetization platform with real-time analytics, 
+                automated optimization, and comprehensive monitoring capabilities.
+              </p>
+            </div>
+            
+            <div className="dashboard-grid animate-slide-in-right">
+              <div className="card">
+                <h3>System Health</h3>
+                <p>Monitor application performance, uptime, and system metrics in real-time.</p>
+                <a href="/api/health" className="btn btn-primary">View Health Status</a>
+              </div>
+              
+              <div className="card">
+                <h3>Analytics Dashboard</h3>
+                <p>Comprehensive metrics visualization with advanced filtering and insights.</p>
+                <a href="/dashboards" className="btn btn-primary">Open Dashboard</a>
+              </div>
+              
+              <div className="card">
+                <h3>API Metrics</h3>
+                <p>Access detailed performance metrics and system statistics via REST API.</p>
+                <a href="/api/metrics" className="btn btn-secondary">View API</a>
+              </div>
+              
+              <div className="card">
+                <h3>Content Management</h3>
+                <p>Manage R2 storage, ingest external content, and configure monetization rules.</p>
+                <a href="/admin/ingest" className="btn btn-secondary">Admin Panel</a>
+              </div>
+            </div>
+          </section>
+          
+          <section className="section">
+            <div className="section-header">
+              <h2 className="section-title">Platform Features</h2>
+            </div>
+            
+            <div className="dashboard-grid">
+              <div className="metric-card">
+                <div className="metric-value">99.9%</div>
+                <div className="metric-label">Uptime</div>
+              </div>
+              
+              <div className="metric-card">
+                <div className="metric-value">&lt;50ms</div>
+                <div className="metric-label">Response Time</div>
+              </div>
+              
+              <div className="metric-card">
+                <div className="metric-value">24/7</div>
+                <div className="metric-label">Monitoring</div>
+              </div>
+              
+              <div className="metric-card">
+                <div className="metric-value">Auto</div>
+                <div className="metric-label">Optimization</div>
+              </div>
+            </div>
+          </section>
+         </div>
+       </main>
+       
+       <div className="signature-footer">
+         Made by Jeremy Morgan-Jones Sr (LoveLogic AI LLC)
+       </div>
+     </div>
+    )
 })
 
 // Asset Library route
@@ -305,12 +375,24 @@ app.get('/dashboards', (c) => {
           fetch('/static/assets/dashboards.json').then(function(r){return r.json()}).then(function(j){ render(j.entries||[]); });
         })();
       ` }} />
+      <div className="signature-footer">Made by Jeremy Morgan-Jones Sr (LoveLogic AI LLC)</div>
     </div>
   )
 })
 
 // Health check endpoint for monitoring
 app.get('/api/health', health)
+
+// Version endpoint
+app.get('/version.json', (c) => c.json({ 
+  commit: COMMIT_SHA, 
+  short: COMMIT_SHORT, 
+  built_at: BUILD_TIME 
+}))
+
+// Monitoring endpoints
+app.get('/api/metrics', metrics)
+app.get('/api/health-metrics', healthMetrics)
 
 // Simple Admin UI for R2 ingestion (client-side calls /api/ingestR2)
 app.get('/admin/ingest', (c) => {
@@ -340,6 +422,7 @@ app.get('/admin/ingest', (c) => {
           });
         })();
       ` }} />
+      <div className="signature-footer">Made by Jeremy Morgan-Jones Sr (LoveLogic AI LLC)</div>
     </div>
   )
 })
