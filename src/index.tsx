@@ -3,16 +3,34 @@ import { renderer } from './renderer'
 import { serveStatic } from 'hono/cloudflare-workers'
 import { cors } from 'hono/cors'
 
+/**
+ * The main Hono application instance.
+ * @type {Hono}
+ */
 const app = new Hono()
 
-// Serve static files from public/ via /static/*
+/**
+ * Middleware to serve static files from the `public` directory.
+ * All requests to `/static/*` will be handled by this middleware.
+ */
 app.use('/static/*', serveStatic({ root: './public' }))
 
+/**
+ * Middleware to render JSX templates.
+ */
 app.use(renderer)
 
-// CORS for API
+/**
+ * Middleware to enable CORS for all API routes.
+ */
 app.use('/api/*', cors())
 
+/**
+ * Route for the home page.
+ * Renders the main landing page which includes a README, a demo video, and a podcast.
+ * @param {import('hono').Context} c - The Hono context object.
+ * @returns {import('hono').Next} A rendered HTML response.
+ */
 app.get('/', (c) => {
   return c.render(
     <div style={{ padding: '24px', fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial' }}>
@@ -63,7 +81,12 @@ app.get('/', (c) => {
   )
 })
 
-// Asset Library route
+/**
+ * Route for the Asset Library page.
+ * Displays a list of assets that can be filtered.
+ * @param {import('hono').Context} c - The Hono context object.
+ * @returns {import('hono').Next} A rendered HTML response.
+ */
 app.get('/library', (c) => {
   return c.render(
     <div style={{ padding: '24px', fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial' }}>
@@ -105,7 +128,11 @@ app.get('/library', (c) => {
   )
 })
 
-// R2 object proxy (streams files from R2)
+/**
+ * API route to proxy and stream files from an R2 bucket.
+ * @param {import('hono').Context} c - The Hono context object.
+ * @returns {Promise<Response>} The file from R2 or an error message.
+ */
 app.get('/api/r2/:key{.+}', async (c) => {
   const env: any = (c as any).env || (c as any).executionCtx?.env || (c as any).get('env');
   if (!env || !env.R2) return c.text('R2 not configured', 501)
@@ -118,7 +145,12 @@ app.get('/api/r2/:key{.+}', async (c) => {
   return new Response(obj.body as any, { headers })
 })
 
-// Aggregated assets listing: merge static manifest with R2 objects if available
+/**
+ * API route to get a list of all assets.
+ * Merges a static list of assets with a list of objects from an R2 bucket.
+ * @param {import('hono').Context} c - The Hono context object.
+ * @returns {Promise<Response>} A JSON response containing the list of assets.
+ */
 app.get('/api/assets', async (c) => {
   try {
     const origin = new URL(c.req.url).origin
@@ -149,7 +181,11 @@ app.get('/api/assets', async (c) => {
   }
 })
 
-// Ingest external URL into R2 (edge-side copy)
+/**
+ * API route to ingest a file from a URL into an R2 bucket.
+ * @param {import('hono').Context} c - The Hono context object.
+ * @returns {Promise<Response>} A JSON response indicating the result of the operation.
+ */
 app.post('/api/ingestR2', async (c) => {
   const env: any = (c as any).env || (c as any).executionCtx?.env || (c as any).get('env')
   if (!env || !env.R2) return c.text('R2 not configured', 501)
@@ -189,7 +225,12 @@ app.post('/api/ingestR2', async (c) => {
   return c.json({ ok: true, key: filename, size: buf.byteLength, streamed: false, url: '/api/r2/' + filename })
 })
 
-// CSV Explorer route
+/**
+ * Route for the CSV Explorer page.
+ * Renders a page that allows users to load and explore CSV files.
+ * @param {import('hono').Context} c - The Hono context object.
+ * @returns {import('hono').Next} A rendered HTML response.
+ */
 app.get('/csv', (c) => {
   const u = new URL(c.req.url)
   const src = u.searchParams.get('src') || '/static/assets/REVENUE_TRACKING_SYSTEM.csv'
@@ -276,7 +317,12 @@ app.get('/csv', (c) => {
   )
 })
 
-// Dashboards viewer with sidebar
+/**
+ * Route for the Dashboards page.
+ * Displays a list of dashboards that can be viewed in an iframe.
+ * @param {import('hono').Context} c - The Hono context object.
+ * @returns {import('hono').Next} A rendered HTML response.
+ */
 app.get('/dashboards', (c) => {
   return c.render(
     <div style={{ display: 'flex', minHeight: '100vh', fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial' }}>
@@ -308,7 +354,12 @@ app.get('/dashboards', (c) => {
   )
 })
 
-// Simple Admin UI for R2 ingestion (client-side calls /api/ingestR2)
+/**
+ * Route for the R2 Ingestion admin page.
+ * Renders a simple UI for ingesting files into R2 from a URL.
+ * @param {import('hono').Context} c - The Hono context object.
+ * @returns {import('hono').Next} A rendered HTML response.
+ */
 app.get('/admin/ingest', (c) => {
   return c.render(
     <div style={{ padding: '24px', fontFamily: 'system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial' }}>
@@ -340,4 +391,8 @@ app.get('/admin/ingest', (c) => {
   )
 })
 
+/**
+ * Export the Hono app instance.
+ * This is the main entry point for the Cloudflare Worker.
+ */
 export default app

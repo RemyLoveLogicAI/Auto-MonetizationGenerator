@@ -6,6 +6,11 @@ const ROOT = resolve(__dirname, '..')
 const PUBLIC = resolve(ROOT, 'public')
 const ASSETS = resolve(PUBLIC, 'static', 'assets')
 
+/**
+ * Recursively walks a directory and returns a flat list of all file paths.
+ * @param {string} dir - The directory to walk.
+ * @returns {string[]} An array of absolute file paths.
+ */
 function walk(dir) {
   let out = []
   for (const name of readdirSync(dir)) {
@@ -17,11 +22,21 @@ function walk(dir) {
   return out
 }
 
+/**
+ * Converts an absolute file path to a URL relative to the public directory.
+ * @param {string} abs - The absolute file path.
+ * @returns {string} The relative URL path.
+ */
 function relUrl(abs) {
   const r = '/' + relative(PUBLIC, abs).split(sep).join('/')
   return r
 }
 
+/**
+ * Main function to generate the dashboards.json file.
+ * It finds all HTML files in the assets directory, creates a sorted list of entries,
+ * and writes it to `public/static/assets/dashboards.json`.
+ */
 function main() {
   const paths = walk(ASSETS)
   const entries = []
