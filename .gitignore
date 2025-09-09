@@ -21,6 +21,9 @@ logs/
 # Wrangler local state
 .wrangler/
 
+# Generated files
+src/version.ts
+
 # OS/IDE
 .DS_Store
 .idea/
