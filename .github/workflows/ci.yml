@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm ci
+    
+    - name: Run linting
+      run: npm run lint
+    
+    - name: Check code formatting
+      run: npm run format:check
+    
+    - name: Run tests with coverage
+      run: npm test -- --coverage --coverageReporters=text-lcov > coverage.lcov
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+      with:
+        file: ./coverage.lcov
+        fail_ci_if_error: false
+
+    - name: Build project
+      run: npm run build
+
+    - name: Run monitoring system validation
+      run: |
+        echo "Validating monitoring system..."
+        node -e "
+          const { monitoring } = require('./dist/monitoring.js');
+          monitoring.recordMetric('ci_test', 1);
+          monitoring.log('info', 'CI validation test');
+          const stats = monitoring.getSystemStats();
+          console.log('Monitoring system operational:', stats.metrics.total > 0);
+        "
