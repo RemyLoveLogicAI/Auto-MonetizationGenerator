@@ -1,0 +1,68 @@
+# CODEOWNERS file for Auto-MonetizationGenerator
+# ==============================================
+# This file defines code ownership and automatic review requests
+# Learn more: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Global Owners
+# These owners will be the default owners for everything in the repo
+# Unless a later match takes precedence, they will be requested for review
+* @RemyLoveLogicAI
+
+# Documentation
+# All documentation files require review
+*.md @RemyLoveLogicAI
+/docs/ @RemyLoveLogicAI
+README.md @RemyLoveLogicAI
+SECURITY.md @RemyLoveLogicAI
+
+# Configuration Files
+# Critical configuration files that affect the entire project
+/.github/ @RemyLoveLogicAI
+*.config.js @RemyLoveLogicAI
+*.config.cjs @RemyLoveLogicAI
+*.config.ts @RemyLoveLogicAI
+package.json @RemyLoveLogicAI
+package-lock.json @RemyLoveLogicAI
+tsconfig.json @RemyLoveLogicAI
+wrangler.toml @RemyLoveLogicAI
+wrangler.jsonc @RemyLoveLogicAI
+ecosystem.config.cjs @RemyLoveLogicAI
+
+# Python Backend and AI Agent OS
+# All Python dependencies and backend code
+/public/static/assets/lovelogicai_agent_os/ @RemyLoveLogicAI
+requirements.txt @RemyLoveLogicAI
+*.py @RemyLoveLogicAI
+
+# Security and Compliance
+# Security-related files require careful review
+SECURITY.md @RemyLoveLogicAI
+.github/workflows/ @RemyLoveLogicAI
+
+# Source Code
+# Core application source code
+/src/ @RemyLoveLogicAI
+
+# Build and Deployment
+# Files that affect build and deployment processes
+vite.config.ts @RemyLoveLogicAI
+eslint.config.js @RemyLoveLogicAI
+jest.config.cjs @RemyLoveLogicAI
+.prettierrc @RemyLoveLogicAI
+.gitignore @RemyLoveLogicAI
+
+# Scripts
+# Automation and utility scripts
+/scripts/ @RemyLoveLogicAI
+
+# Tests
+# Test files and test configuration
+/tests/ @RemyLoveLogicAI
+*.test.js @RemyLoveLogicAI
+*.test.ts @RemyLoveLogicAI
+*.spec.js @RemyLoveLogicAI
+*.spec.ts @RemyLoveLogicAI
+
+# Public Assets
+# Frontend assets and static files
+/public/ @RemyLoveLogicAI
