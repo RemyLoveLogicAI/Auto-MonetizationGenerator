@@ -2,6 +2,7 @@
 # ================================================
 # Core AI and Machine Learning Dependencies
 # Updated: 2026-02-01 - Fixed version conflicts and added missing dependencies
+# CVE Fix: 2026-02-01 - Updated transformers to 4.36.0+ to fix GHSA-3863-2447-669p
 
 # FastAPI and Web Framework
 fastapi==0.104.1
@@ -20,9 +21,9 @@ langchain-community==0.0.6
 langchain-core==0.3.81
 langchain-openai==0.0.2
 langgraph==0.0.20
-transformers==4.30.2  # UPDATED: Downgraded from 4.36.0 to resolve tokenizers conflict
+transformers==4.36.0  # UPDATED: Security fix for GHSA-3863-2447-669p deserialization vulnerability
 safetensors>=0.4.0  # ADDED: Required by transformers
-tokenizers>=0.11.1,!=0.11.3,<0.14  # UPDATED: Fixed version range for transformers compatibility
+tokenizers>=0.13.0,<0.14  # UPDATED: Fixed version range for transformers 4.36.0+ compatibility
 torch==2.10.0  # UPDATED: Security fix from 2.6.0
 torchvision==0.18.0  # UPDATED: Compatible with torch 2.10.0
 torchaudio==2.3.0  # UPDATED: Compatible with torch 2.10.0
