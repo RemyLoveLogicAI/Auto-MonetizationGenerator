@@ -1,28 +1,33 @@
 # LoveLogicAI Agent OS - Python Backend Requirements
 # ================================================
 # Core AI and Machine Learning Dependencies
+# Updated: 2026-02-01 - Fixed version conflicts and added missing dependencies
 
 # FastAPI and Web Framework
 fastapi==0.104.1
 uvicorn[standard]==0.24.0
 pydantic==2.5.0
-python-multipart==0.0.6
+python-multipart==0.0.22  # UPDATED: Security fix from 0.0.6
 python-jose[cryptography]==3.4.0
 passlib[bcrypt]==1.7.4
 
 # AI and Machine Learning Core
 openai==1.3.5
+httpx==0.25.2  # Required by openai, moved up to resolve conflicts
 langchain==0.0.335
 langchain-experimental==0.0.52
 langchain-community==0.0.6
 langchain-core==0.3.81
 langchain-openai==0.0.2
 langgraph==0.0.20
-transformers==4.36.0
-torch==2.6.0
-torchvision==0.16.1
-torchaudio==2.1.1
+transformers==4.30.2  # UPDATED: Downgraded from 4.36.0 to resolve tokenizers conflict
+safetensors>=0.4.0  # ADDED: Required by transformers
+tokenizers>=0.11.1,!=0.11.3,<0.14  # UPDATED: Fixed version range for transformers compatibility
+torch==2.10.0  # UPDATED: Security fix from 2.6.0
+torchvision==0.18.0  # UPDATED: Compatible with torch 2.10.0
+torchaudio==2.3.0  # UPDATED: Compatible with torch 2.10.0
 sentence-transformers==2.2.2
+scipy>=1.11.4  # ADDED: Required by multiple packages
 numpy==1.24.3
 pandas==2.0.3
 scikit-learn==1.3.2
@@ -31,9 +36,11 @@ scikit-learn==1.3.2
 speechrecognition==3.10.0
 pydub==0.25.1
 librosa==0.10.1
+numba>=0.58.1  # ADDED: Required by librosa
 soundfile==0.12.1
 pyaudio==0.2.11
 elevenlabs==0.2.26
+websockets>=12.0  # ADDED: Required by elevenlabs
 azure-cognitiveservices-speech==1.34.0
 
 # Computer Vision
@@ -53,30 +60,34 @@ pymongo==4.6.0
 psycopg2-binary==2.9.9
 
 # Async and Concurrency
-asyncio==3.4.3
 aiohttp==3.9.1
 aiofiles==23.2.1
 asyncpg==0.29.0
 celery==5.3.4
 
 # Data Processing and Analysis
-scipy==1.11.4
 matplotlib==3.8.2
 seaborn==0.13.0
 plotly==5.17.0
+nbconvert>=7.17.0  # UPDATED: Security fix - pin minimum version
+protobuf>=6.33.5  # UPDATED: Security fix - pin minimum version
 jupyter==1.0.0
 ipython==8.17.2
+pyzmq>=25.0.0  # ADDED: Required by jupyter/ipykernel/notebook
 
 # Natural Language Processing
 spacy==3.7.2
+preshed>=3.0.0  # ADDED: Required by spacy
+thinc>=8.1.0  # ADDED: Required by spacy
+cymem>=2.0.0  # ADDED: Required by spacy
+murmurhash>=1.0.0  # ADDED: Required by spacy
+typing-extensions>=4.5.0  # UPDATED: Fixed version for spacy compatibility
 nltk==3.8.1
 textblob==0.17.1
 gensim==4.3.2
 
 # API and HTTP
 requests==2.31.0
-httpx==0.25.2
-websockets==12.0
 
 # Configuration and Environment
 python-dotenv==1.0.0
@@ -101,8 +112,8 @@ pytest==7.4.3
 pytest-asyncio==0.21.1
 pytest-cov==4.1.0
 pytest-mock==3.12.0
-httpx==0.25.2
 factory-boy==3.3.0
+Faker>=20.1.0  # ADDED: Required by factory-boy
 
 # Development Tools
 black==23.11.0
@@ -119,7 +130,6 @@ rich==13.7.0
 tqdm==4.66.1
 pathlib==1.0.1
 uuid==1.30
-hashlib==20081119
 json5==0.9.14
 
 # Memory and Caching
@@ -128,7 +138,6 @@ joblib==1.3.2
 pickle5==0.0.12
 
 # Network and Communication
-socket.io==5.10.0
 python-socketio==5.10.0
 pika==1.3.2
 kafka-python==2.0.2
@@ -144,11 +153,13 @@ xlsxwriter==3.1.9
 imageio==2.33.1
 scikit-image==0.22.0
 moviepy==1.0.3
+decorator>=4.0.2,<5.0  # UPDATED: Fixed version range for moviepy compatibility
 
 # Deployment and Production
 gunicorn==21.2.0
 docker==6.1.3
 kubernetes==28.1.0
+urllib3>=1.24.2,<2.0  # UPDATED: Fixed version range for kubernetes compatibility
 
 # Cloud Services
 boto3==1.34.0
@@ -157,7 +168,6 @@ azure-storage-blob==12.19.0
 
 # Performance Optimization
 cython==3.0.6
-numba==0.58.1
 psutil==5.9.6
 
 # Development Dependencies (Optional)
@@ -186,7 +196,6 @@ igraph==0.11.3
 # Specialized AI Libraries
 huggingface-hub==0.19.4
 datasets==2.15.0
-tokenizers==0.15.0
 accelerate==0.25.0
 bitsandbytes==0.41.3
 
