@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: "/public/static/assets/lovelogicai_agent_os/lovelogicai_agent_os"
+    schedule:
+      interval: weekly
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
