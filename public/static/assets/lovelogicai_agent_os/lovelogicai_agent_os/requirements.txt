@@ -75,7 +75,7 @@ gensim==4.3.2
 
 # API and HTTP
 requests==2.31.0
-urllib3==1.26.18
+urllib3==2.6.3
 httpx==0.25.2
 websockets==12.0
 
