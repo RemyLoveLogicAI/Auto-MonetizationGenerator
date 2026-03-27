@@ -1,7 +1,0 @@
-name = "auto-monetization-generator"
-compatibility_date = "2025-08-17"
-pages_build_output_dir = "./dist"
-
-[[r2_buckets]]
-binding = "R2"
-bucket_name = "lovelogicai-assets"
