@@ -188,6 +188,12 @@ class MonitoringService {
 
   // Clear old data
   cleanup(olderThan: number = 24 * 60 * 60 * 1000) {
+    if (olderThan <= 0) {
+      this.metrics = []
+      this.logs = []
+      return
+    }
+
     const cutoff = Date.now() - olderThan
     this.metrics = this.metrics.filter((m) => m.timestamp >= cutoff)
     this.logs = this.logs.filter((log) => log.timestamp >= cutoff)
