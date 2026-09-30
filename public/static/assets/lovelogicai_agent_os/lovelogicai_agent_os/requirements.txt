@@ -64,7 +64,7 @@ scipy==1.11.4
 matplotlib==3.11.2
 seaborn==0.13.0
 plotly==5.17.0
-jupyter==1.0.0
+jupyter==1.1.1
 ipython==8.17.2
 
 # Natural Language Processing
