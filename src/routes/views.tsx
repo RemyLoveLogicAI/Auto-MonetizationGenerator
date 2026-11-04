@@ -104,66 +104,12 @@ viewsRouter.get('/library', (c) => {
         <input id="toggleAdult" type="checkbox" style={{ marginRight: '8px' }} /> Show adult content
       </label>
       <div id="assets" style={{ marginTop: '16px' }}>Loading…</div>
-      <script dangerouslySetInnerHTML={{ __html: `
-        (function(){
-          function render(entries){
-            var root = document.getElementById('assets');
-            root.textContent = '';
-            var ul = document.createElement('ul');
-            ul.style.listStyle = 'none';
-            ul.style.padding = '0';
-            entries.forEach(function(e){
-              var li = document.createElement('li');
-              li.style.margin = '8px 0';
-              var a = document.createElement('a');
-              var href = String(e.url || '');
-              var ok = href.indexOf('https://') === 0 || href.indexOf('http://') === 0 || href.charAt(0) === '/';
-              a.setAttribute('href', ok ? href : '#');
-              a.textContent = String(e.name || '');
-              a.style.color = '#2563eb';
-              a.style.textDecoration = 'underline';
-              li.appendChild(a);
-              var type = String(e.type || 'item').toUpperCase();
-              var size = e.size ? ' (' + (e.size/1024/1024).toFixed(2) + ' MB)' : '';
-              var meta = document.createElement('span');
-              meta.style.color = '#6b7280';
-              meta.textContent = ' [' + type + ']' + size;
-              li.appendChild(meta);
-              if (e.adult) {
-                var badge = document.createElement('span');
-                badge.textContent = ' ADULT';
-                badge.style.color = '#b91c1c';
-                badge.style.border = '1px solid #ef4444';
-                badge.style.padding = '2px 6px';
-                badge.style.borderRadius = '6px';
-                li.appendChild(badge);
-              }
-              ul.appendChild(li);
-            });
-            root.appendChild(ul);
-          }
-          async function load(showAdult) {
-            try {
-              const res = await fetch('/api/assets');
-              const data = await res.json();
-              const entries = (data.entries || []).filter(e => showAdult || !e.adult);
-              render(entries);
-            } catch (e) {
-              document.getElementById('assets').textContent = 'Failed to load manifest: ' + e;
-            }
-          }
-          const cb = document.getElementById('toggleAdult');
-          if (cb) {
-            cb.addEventListener('change', () => load(cb.checked));
-          }
-          load(false);
-        })();
-      ` }} />
+      <script src="/static/library.js"></script>
     </div>
   )
 })
 
-// CSV Explorer route with HTML entity escaping
+// CSV Explorer route (client-side parsing in /static/csv.js)
 viewsRouter.get('/csv', (c) => {
   const u = new URL(c.req.url)
   const src = u.searchParams.get('src') || '/static/assets/REVENUE_TRACKING_SYSTEM.csv'
@@ -181,80 +127,7 @@ viewsRouter.get('/csv', (c) => {
       </div>
       <div id="table" style={{ marginTop: '12px', overflowX: 'auto' }}></div>
       <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-      <script dangerouslySetInnerHTML={{ __html: `
-        (function(){
-          function escapeHtml(str) {
-            if (str === null || str === undefined) return '';
-            return String(str)
-              .replace(/&/g, '&amp;')
-              .replace(/</g, '&lt;')
-              .replace(/>/g, '&gt;')
-              .replace(/"/g, '&quot;')
-              .replace(/'/g, '&#039;');
-          }
-          function detectSchema(rows){
-            if (!rows || rows.length < 2) return { headers: [], types: [] };
-            var headers = rows[0].map(function(h){ return String(h); });
-            var cols = headers.length;
-            var types = new Array(cols).fill('string');
-            for (var c=0;c<cols;c++){
-              var seenNum = 0, seenDate = 0, seenStr = 0;
-              for (var r=1;r<Math.min(rows.length, 200); r++){
-                var v = rows[r][c];
-                if (v === null || v === undefined || v === '') continue;
-                var s = String(v).trim();
-                if (!isNaN(Number(s))) { seenNum++; continue; }
-                var d = new Date(s); if (!isNaN(d.getTime())) { seenDate++; continue; }
-                seenStr++;
-              }
-              types[c] = (seenNum>0 && seenStr===0) ? 'number' : (seenDate>0 && seenStr===0 ? 'date' : 'string');
-            }
-            return { headers: headers, types: types };
-          }
-          function renderTable(rows){
-            if (!rows || !rows.length) { document.getElementById("table").innerHTML = "<em>No rows.</em>"; return; }
-            var schema = detectSchema(rows);
-            var headers = schema.headers;
-            var thead = "<thead><tr>" + headers.map(function(h,i){return "<th style=\\\"text-align:left;border-bottom:1px solid #e5e7eb;padding:6px;\\\">"+escapeHtml(h)+"<br><small style=\\\"color:#6b7280\\\">"+escapeHtml(schema.types[i])+"</small></th>"}).join("") + "</tr></thead>";
-            var body = "<tbody>" + rows.slice(1, 5001).map(function(r){
-              return "<tr>" + r.map(function(c){return "<td style=\\\"padding:6px;border-bottom:1px solid #f3f4f6;\\\">"+escapeHtml(c)+"</td>"}).join("") + "</tr>";
-            }).join("") + "</tbody>";
-            document.getElementById("table").innerHTML = "<table style=\\\"border-collapse:collapse;min-width:900px;\\\">" + thead + body + "</table>";
-          }
-          var ALL_ROWS = [];
-          function applyFilter(){
-            var q = (document.getElementById('filter')).value.toLowerCase();
-            var rows = ALL_ROWS;
-            if (q) {
-              rows = [rows[0]].concat(rows.slice(1).filter(function(r){
-                return r.some(function(c){ return String(c).toLowerCase().indexOf(q) !== -1; });
-              }));
-            }
-            renderTable(rows);
-          }
-          function load(){
-            var src = (document.getElementById("src")).value;
-            document.getElementById("status").textContent = "Loading " + src + "...";
-            fetch(src).then(function(res){
-              if(!res.ok) throw new Error("HTTP "+res.status);
-              return res.text();
-            }).then(function(text){
-              var parsed = (window).Papa.parse(text, { header:false });
-              ALL_ROWS = parsed.data;
-              renderTable(ALL_ROWS);
-              document.getElementById("status").textContent = "Loaded " + (parsed.data.length||0) + " rows.";
-            }).catch(function(e){
-              document.getElementById("status").textContent = "Failed: " + e;
-            });
-          }
-          var btn = document.getElementById("load");
-          if (btn) btn.addEventListener("click", load);
-          var filter = document.getElementById('filter');
-          if (filter) filter.addEventListener('input', applyFilter);
-          // Auto-load initial
-          load();
-        })();
-      ` }} />
+      <script src="/static/csv.js"></script>
     </div>
   )
 })
@@ -272,41 +145,7 @@ viewsRouter.get('/dashboards', (c) => {
           <iframe id="frame" src="about:blank" style={{ width: '100%', height: '100%', border: 0 }}></iframe>
         </div>
       </main>
-      <script dangerouslySetInnerHTML={{ __html: `
-        (function(){
-          function render(list){
-            var root = document.getElementById('list');
-            root.textContent = '';
-            var ul = document.createElement('ul');
-            ul.style.listStyle = 'none';
-            ul.style.padding = '0';
-            ul.style.margin = '0';
-            list.forEach(function(e){
-              var li = document.createElement('li');
-              li.style.margin = '6px 0';
-              var a = document.createElement('a');
-              var href = String(e.url || '');
-              var ok = href.indexOf('https://') === 0 || href.indexOf('http://') === 0 || href.charAt(0) === '/';
-              a.setAttribute('href', '#');
-              a.setAttribute('data-url', ok ? href : 'about:blank');
-              a.textContent = String((e.folder ? e.folder + ' / ' : '') + (e.name || ''));
-              a.style.textDecoration = 'underline';
-              a.style.color = '#2563eb';
-              a.addEventListener('click', function(ev){
-                ev.preventDefault();
-                document.getElementById('frame').src = a.getAttribute('data-url');
-              });
-              li.appendChild(a);
-              ul.appendChild(li);
-            });
-            root.appendChild(ul);
-          }
-          fetch('/static/assets/dashboards.json')
-            .then(function(r){ return r.json(); })
-            .then(function(j){ render(j.entries || []); })
-            .catch(function(e){ document.getElementById('list').textContent = 'Failed to load dashboards: ' + e; });
-        })();
-      ` }} />
+      <script src="/static/dashboards.js"></script>
       <div className="signature-footer">Made by Jeremy Morgan-Jones Sr (LoveLogic AI LLC)</div>
     </div>
   )
