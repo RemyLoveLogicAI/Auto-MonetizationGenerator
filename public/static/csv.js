@@ -1,23 +1,23 @@
 // CSV Explorer client logic. Served as a static file so the page needs no inline script.
 (function () {
   function detectSchema(rows) {
-    if (!rows || rows.length < 2) return { headers: [], types: [] };
-    var headers = rows[0].map(function (h) { return String(h); });
-    var cols = headers.length;
-    var types = new Array(cols).fill('string');
-    for (var c = 0; c < cols; c++) {
+    if (!rows || rows.length < 2) return { columns: [] };
+    var headers = Array.from(rows[0], String);
+    var sample = rows.slice(1, 200);
+    var columns = headers.map(function (name, c) {
       var seenNum = 0, seenDate = 0, seenStr = 0;
-      for (var r = 1; r < Math.min(rows.length, 200); r++) {
-        var v = rows[r][c];
-        if (v === null || v === undefined || v === '') continue;
+      sample.forEach(function (row) {
+        var v = row.at(c);
+        if (v === null || v === undefined || v === '') return;
         var s = String(v).trim();
-        if (!isNaN(Number(s))) { seenNum++; continue; }
-        var d = new Date(s); if (!isNaN(d.getTime())) { seenDate++; continue; }
+        if (!isNaN(Number(s))) { seenNum++; return; }
+        var d = new Date(s); if (!isNaN(d.getTime())) { seenDate++; return; }
         seenStr++;
-      }
-      types[c] = (seenNum > 0 && seenStr === 0) ? 'number' : (seenDate > 0 && seenStr === 0 ? 'date' : 'string');
-    }
-    return { headers: headers, types: types };
+      });
+      var type = (seenNum > 0 && seenStr === 0) ? 'number' : (seenDate > 0 && seenStr === 0 ? 'date' : 'string');
+      return { name: name, type: type };
+    });
+    return { columns: columns };
   }
 
   function renderTable(rows) {
@@ -36,15 +36,15 @@
 
     var thead = document.createElement('thead');
     var headRow = document.createElement('tr');
-    schema.headers.forEach(function (h, i) {
+    schema.columns.forEach(function (column) {
       var th = document.createElement('th');
       th.style.textAlign = 'left';
       th.style.borderBottom = '1px solid #e5e7eb';
       th.style.padding = '6px';
-      th.textContent = String(h);
+      th.textContent = column.name;
       var small = document.createElement('small');
       small.style.color = '#6b7280';
-      small.textContent = schema.types[i];
+      small.textContent = column.type;
       th.appendChild(document.createElement('br'));
       th.appendChild(small);
       headRow.appendChild(th);
