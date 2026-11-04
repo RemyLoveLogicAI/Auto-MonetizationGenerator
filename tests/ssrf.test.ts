@@ -68,4 +68,10 @@ describe('SSRF Protection Service (validateIngestUrl)', () => {
   it('rejects *.localhost subdomains', () => {
     expect(validateIngestUrl('http://foo.localhost/').valid).toBe(false)
   })
+
+  it('rejects trailing-dot FQDN forms of blocked hosts', () => {
+    expect(validateIngestUrl('http://localhost./').valid).toBe(false)
+    expect(validateIngestUrl('http://metadata.google.internal./').valid).toBe(false)
+    expect(validateIngestUrl('http://foo.local./').valid).toBe(false)
+  })
 })

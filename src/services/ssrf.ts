@@ -74,7 +74,9 @@ export function validateIngestUrl(targetUrl: string): { valid: boolean; reason?:
     return { valid: false, reason: `Unsupported protocol: ${parsed.protocol}` }
   }
 
-  const hostname = stripBrackets(parsed.hostname.toLowerCase())
+  // A trailing dot is a valid FQDN form that resolves identically ("localhost."
+  // is 127.0.0.1), so it must not slip past the host and suffix checks.
+  const hostname = stripBrackets(parsed.hostname.toLowerCase()).replace(/\.+$/, '')
 
   if (BLOCKED_HOSTS.has(hostname)) {
     return { valid: false, reason: `Blocked host: ${hostname}` }
@@ -106,6 +108,12 @@ export class SsrfError extends Error {
  * Fetches a URL only after validating it and every redirect hop.
  * Redirects are followed manually so a 302 to 169.254.169.254 cannot slip past
  * the initial check, which is the classic SSRF bypass.
+ *
+ * Limitation: this validates the hostname string, not the address DNS returns.
+ * A name such as `127.0.0.1.nip.io` is publicly resolvable and points at
+ * loopback, and the request is resolved by the platform's fetch, so the only
+ * complete defence is an outbound allowlist (or an egress proxy) enforced
+ * outside this function. Treat POST /api/ingestR2 as internet-facing accordingly.
  */
 export async function fetchValidated(
   targetUrl: string,

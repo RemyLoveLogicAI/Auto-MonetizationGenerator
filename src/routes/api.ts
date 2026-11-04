@@ -75,6 +75,39 @@ apiRouter.get('/assets', async (c) => {
   }
 })
 
+class PayloadTooLargeError extends Error {}
+
+/**
+ * Reads a response body with a hard byte ceiling. A chunked response carries no
+ * content-length, so the cap has to be enforced while streaming rather than
+ * after buffering - otherwise a 60MB body is fully materialised before the 413.
+ */
+async function readCapped(res: Response, limit: number): Promise<ArrayBuffer> {
+  if (!res.body) return new ArrayBuffer(0)
+  const reader = res.body.getReader()
+  const chunks: Uint8Array[] = []
+  let total = 0
+
+  for (;;) {
+    const { done, value } = await reader.read()
+    if (done) break
+    total += value.byteLength
+    if (total > limit) {
+      await reader.cancel()
+      throw new PayloadTooLargeError('Payload exceeds limit')
+    }
+    chunks.push(value)
+  }
+
+  const merged = new Uint8Array(total)
+  let offset = 0
+  for (const chunk of chunks) {
+    merged.set(chunk, offset)
+    offset += chunk.byteLength
+  }
+  return merged.buffer
+}
+
 // Ingest external URL into R2 (edge-side copy) with SSRF validation
 apiRouter.post('/ingestR2', async (c) => {
   const r2 = c.env.R2
@@ -123,8 +156,13 @@ apiRouter.post('/ingestR2', async (c) => {
   }
 
   // Fallback: buffer (suitable for smaller files/local dev)
-  const buf = await res.arrayBuffer()
-  if (buf.byteLength > MAX_INGEST_BYTES) return c.text('Payload too large (limit 50MB)', 413)
+  let buf: ArrayBuffer
+  try {
+    buf = await readCapped(res, MAX_INGEST_BYTES)
+  } catch (e: unknown) {
+    if (e instanceof PayloadTooLargeError) return c.text('Payload too large (limit 50MB)', 413)
+    throw e
+  }
   await r2.put(filename, buf, { httpMetadata: { contentType } })
   return c.json({ ok: true, key: filename, size: buf.byteLength, streamed: false, url: '/api/r2/' + filename })
 })
