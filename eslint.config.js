@@ -31,6 +31,15 @@ export default [
         URL: 'readonly',
         setTimeout: 'readonly',
         require: 'readonly',
+        // Cloudflare Workers runtime globals
+        fetch: 'readonly',
+        Response: 'readonly',
+        Request: 'readonly',
+        Headers: 'readonly',
+        ReadableStream: 'readonly',
+        WritableStream: 'readonly',
+        R2Bucket: 'readonly',
+        RequestInit: 'readonly',
       },
     },
     plugins: {

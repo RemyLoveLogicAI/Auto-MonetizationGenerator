@@ -66,14 +66,32 @@ describe('Integration Tests', () => {
       expect(fs.existsSync(path.join(process.cwd(), 'vite.config.ts'))).toBe(
         true
       )
-      expect(fs.existsSync(path.join(process.cwd(), 'wrangler.toml'))).toBe(
-        true
-      )
+      const hasWranglerConfig =
+        fs.existsSync(path.join(process.cwd(), 'wrangler.jsonc')) ||
+        fs.existsSync(path.join(process.cwd(), 'wrangler.toml'))
+      expect(hasWranglerConfig).toBe(true)
     })
 
     it('should have proper environment configuration', () => {
       // Test environment setup
       expect(typeof process.env).toBe('object')
+    })
+
+    it('should handle missing R2 binding scenario gracefully in health check', async () => {
+      const { health } = await import('../src/health')
+      const mockCtx = {
+        json: jest.fn(),
+        env: { R2: undefined },
+      }
+      await health(mockCtx)
+      expect(mockCtx.json).toHaveBeenCalledWith(
+        expect.objectContaining({
+          status: 'ok',
+          checks: expect.objectContaining({
+            r2_bound: false,
+          }),
+        })
+      )
     })
   })
 })
