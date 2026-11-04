@@ -6,16 +6,31 @@ import { metrics, healthMetrics } from '../metrics'
 
 export const apiRouter = new Hono<AppEnv>()
 
+/**
+ * R2 keys arrive from the URL path or from the ingest caller, so they are
+ * validated before use: no traversal segments, no control characters, and a
+ * bounded length.
+ */
+export function safeObjectKey(raw: string | undefined): string | null {
+  if (!raw) return null
+  const key = raw.replace(/^\/+/, '')
+  if (key.length === 0 || key.length > 512) return null
+  if (key.split('/').some((segment) => segment === '..' || segment === '.')) return null
+  if (!/^[A-Za-z0-9][A-Za-z0-9._/-]*$/.test(key)) return null
+  return key
+}
+
 // R2 object proxy (streams files from R2)
 apiRouter.get('/r2/:key{.+}', async (c) => {
   const r2 = c.env.R2
   if (!r2) return c.text('R2 not configured', 501)
-  const key = c.req.param('key')
+  const key = safeObjectKey(c.req.param('key'))
+  if (!key) return c.text('Invalid object key', 400)
   const obj = await r2.get(key)
   if (!obj) return c.notFound()
-  const headers: Record<string, string> = {}
+  const headers = new Headers()
   const ct = obj.httpMetadata?.contentType
-  if (ct) headers['Content-Type'] = ct
+  if (ct) headers.set('Content-Type', ct)
   return new Response(obj.body, { headers })
 })
 
@@ -80,7 +95,8 @@ apiRouter.post('/ingestR2', async (c) => {
     throw e
   }
   if (!res.ok) return c.text('Fetch failed: ' + res.status + ' ' + res.statusText, 502)
-  const filename = key || url.split('/').pop() || 'upload-' + Date.now()
+  const pathTail = new URL(url).pathname.split('/').pop()
+  const filename = safeObjectKey(key) ?? safeObjectKey(pathTail) ?? 'upload-' + Date.now()
   const contentType = res.headers.get('content-type') || 'application/octet-stream'
   const sizeHeader = res.headers.get('content-length')
   const MAX_INGEST_BYTES = 50 * 1024 * 1024
