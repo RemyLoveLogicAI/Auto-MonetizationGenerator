@@ -1,8 +1,17 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
+  // Deployed with Cloudflare Workers Builds (`npx wrangler deploy`).
+  // `vite build` (@hono/vite-cloudflare-pages) emits dist/_worker.js plus the
+  // static files from public/; the Worker runs _worker.js and serves the rest
+  // of dist/ as static assets. public/.assetsignore keeps _worker.js and
+  // _routes.json from being uploaded as public assets.
   "name": "automonetizationgenerator",
+  "main": "./dist/_worker.js",
   "compatibility_date": "2025-08-17",
-  "pages_build_output_dir": "./dist",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  },
   "r2_buckets": [
     {
       "binding": "R2",
