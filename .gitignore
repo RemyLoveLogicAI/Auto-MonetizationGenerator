@@ -25,3 +25,9 @@ logs/
 .DS_Store
 .idea/
 .vscode/
+
+# Static binary assets (offloaded to Cloudflare R2)
+*.mp3
+*.mp4
+public/static/assets/**/*.zip
+public/static/assets/**/*.db

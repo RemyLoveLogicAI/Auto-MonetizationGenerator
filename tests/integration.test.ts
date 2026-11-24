@@ -59,21 +59,37 @@ describe('Integration Tests', () => {
 
   describe('Build and Deployment', () => {
     it('should have valid build configuration', () => {
-      // Validate build configuration exists
+      // Validate build configuration exists. Paths are string literals resolved
+      // against the working directory (jest runs from the repo root), so no
+      // file path is assembled at runtime.
       const fs = require('fs')
-      const path = require('path')
 
-      expect(fs.existsSync(path.join(process.cwd(), 'vite.config.ts'))).toBe(
-        true
-      )
-      expect(fs.existsSync(path.join(process.cwd(), 'wrangler.toml'))).toBe(
-        true
-      )
+      expect(fs.existsSync('vite.config.ts')).toBe(true)
+      const hasWranglerConfig =
+        fs.existsSync('wrangler.jsonc') || fs.existsSync('wrangler.toml')
+      expect(hasWranglerConfig).toBe(true)
     })
 
     it('should have proper environment configuration', () => {
       // Test environment setup
       expect(typeof process.env).toBe('object')
+    })
+
+    it('should handle missing R2 binding scenario gracefully in health check', async () => {
+      const { health } = await import('../src/health')
+      const mockCtx = {
+        json: jest.fn(),
+        env: { R2: undefined },
+      }
+      await health(mockCtx)
+      expect(mockCtx.json).toHaveBeenCalledWith(
+        expect.objectContaining({
+          status: 'ok',
+          checks: expect.objectContaining({
+            r2_bound: false,
+          }),
+        })
+      )
     })
   })
 })

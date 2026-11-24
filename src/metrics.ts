@@ -1,15 +1,16 @@
+import type { Context } from 'hono'
 import { monitoring } from './monitoring'
+import type { AppEnv } from './types/bindings'
 
-interface MetricsContext {
-  json: (_responseData: Record<string, unknown>) => unknown
-  text: (_responseData: string) => unknown
+type MetricsContext = Context<AppEnv> | {
+  json: (_responseData: Record<string, unknown>, _status?: number) => Response | unknown
+  text: (_responseData: string, _status?: number) => Response | unknown
   req: {
     url: string
-    headers: Record<string, string>
+    headers?: Record<string, string>
   }
 }
-
-export async function metrics(c: MetricsContext) {
+export async function metrics(c: MetricsContext): Promise<Response> {
   const url = new URL(c.req.url)
   const format = url.searchParams.get('format') || 'json'
   const since = url.searchParams.get('since')
@@ -32,7 +33,7 @@ export async function metrics(c: MetricsContext) {
       })
       .join('\n')
 
-    return c.text(prometheusMetrics)
+    return c.text(prometheusMetrics) as unknown as Response
   }
 
   // JSON format (default)
@@ -45,10 +46,10 @@ export async function metrics(c: MetricsContext) {
     metrics: metricsData,
     logs: logsData,
     timestamp: Date.now(),
-  })
+  }) as unknown as Response
 }
 
-export async function healthMetrics(c: MetricsContext) {
+export async function healthMetrics(c: MetricsContext): Promise<Response> {
   const systemStats = monitoring.getSystemStats()
   const recentErrors = monitoring.getLogs('error', Date.now() - 5 * 60 * 1000) // Last 5 minutes
 
@@ -59,5 +60,5 @@ export async function healthMetrics(c: MetricsContext) {
     system: systemStats,
     recent_errors: recentErrors.length,
     timestamp: Date.now(),
-  })
+  }) as unknown as Response
 }

@@ -8,8 +8,10 @@
     "lib": [
       "ESNext"
     ],
-    "types": ["vite/client", "jest", "node"],
+    "types": ["vite/client", "jest", "node", "@cloudflare/workers-types"],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx"
   },
+  "include": ["src/**/*", "tests/**/*"],
+  "exclude": ["node_modules", "dist", "public"]
 }

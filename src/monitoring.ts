@@ -12,7 +12,7 @@ interface LogEntry {
   context?: Record<string, unknown>
 }
 
-class MonitoringService {
+export class MonitoringService {
   private metrics: MetricData[] = []
   private logs: LogEntry[] = []
   private readonly maxMetrics = 1000
@@ -105,8 +105,8 @@ class MonitoringService {
       this.logs = this.logs.slice(-this.maxLogs)
     }
 
-    // Console output for development
-    if (typeof console !== 'undefined') {
+    // Console output for development (suppressed in test environment)
+    if (typeof console !== 'undefined' && process.env.NODE_ENV !== 'test') {
       const logMethod = console[level] || console.log
       logMethod(`[${level.toUpperCase()}] ${message}`, context || '')
     }

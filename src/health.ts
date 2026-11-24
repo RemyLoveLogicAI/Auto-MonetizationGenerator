@@ -1,26 +1,37 @@
+import type { Context } from 'hono'
 import { COMMIT_SHA, COMMIT_SHORT, BUILD_TIME } from './version'
 import { withMonitoring } from './monitoring'
+import type { AppEnv } from './types/bindings'
 
-interface HealthContext {
-  json: (_responseData: Record<string, unknown>) => unknown
-  env: Record<string, unknown>
+type R2Like = {
+  list?: (options?: { limit?: number }) => Promise<unknown>
 }
 
-export const health = withMonitoring(async function health(c: HealthContext) {
+export type HealthContext = Context<AppEnv> | {
+  json: (_responseData: Record<string, unknown>, _status?: number) => Response | unknown
+  env?: { R2?: R2Like | unknown; [key: string]: unknown }
+}
+
+export const health = withMonitoring(async function health(c: HealthContext): Promise<Response> {
+  const r2 = c.env?.R2
+  let r2Connected = Boolean(r2)
+  const t0 = Date.now()
+  if (r2 && typeof r2 === 'object' && 'list' in r2 && typeof r2.list === 'function') {
+    try {
+      await r2.list({ limit: 1 })
+      r2Connected = true
+    } catch {
+      r2Connected = false
+    }
+  }
+  const t1 = Date.now()
+
   const checks = {
     uptime_ms: Date.now() - Date.parse(BUILD_TIME),
     r2_bound: Boolean(c.env?.R2),
+    r2_connected: r2Connected,
     env: 'pages',
   }
-
-  const t0 = Date.now()
-  let x = 0
-  for (let i = 0; i < 10000; i++) {
-    x += Math.sqrt(i)
-  }
-  const t1 = Date.now()
-  // Use x to avoid unused variable warning
-  void x
 
   return c.json({
     status: 'ok',
@@ -34,5 +45,5 @@ export const health = withMonitoring(async function health(c: HealthContext) {
     },
     checks,
     now: new Date().toISOString(),
-  })
+  }) as unknown as Response
 }, 'health_endpoint')
