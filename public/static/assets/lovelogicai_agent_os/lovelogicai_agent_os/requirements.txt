@@ -19,7 +19,7 @@ langchain-core==1.2.11
 langchain-openai==0.0.2
 langgraph==1.0.10rc1
 transformers==4.53.0
-torch==2.8.0
+torch==2.13.0
 torchvision==0.16.1
 torchaudio==2.1.1
 sentence-transformers==2.2.2
@@ -38,7 +38,7 @@ azure-cognitiveservices-speech==1.34.0
 
 # Computer Vision
 opencv-python==4.8.1.78
-pillow==12.1.1
+pillow==13.0.0
 face-recognition==1.3.0
 mediapipe==0.10.8
 ultralytics==8.0.206
@@ -49,12 +49,12 @@ alembic==1.12.1
 sqlite3-to-mysql==2.1.7
 redis==8.1.0
 motor==3.3.2
-pymongo==4.6.3
+pymongo==4.18.3
 psycopg2-binary==2.9.9
 
 # Async and Concurrency
 asyncio==3.4.3
-aiohttp==3.13.3
+aiohttp==3.14.4
 aiofiles==23.2.1
 asyncpg==0.29.0
 celery==5.3.4
@@ -69,7 +69,7 @@ ipython==8.17.2
 
 # Natural Language Processing
 spacy==3.7.2
-nltk==3.9.4
+nltk==3.10.4
 textblob==0.17.1
 gensim==4.3.2
 
@@ -95,7 +95,7 @@ structlog==23.2.0
 cryptography==46.0.5
 bcrypt==4.1.2
 python-jwt==4.0.0
-authlib==1.6.9
+authlib==1.9.1
 
 # Testing
 pytest==7.4.3
@@ -106,7 +106,7 @@ httpx==0.25.2
 factory-boy==3.3.0
 
 # Development Tools
-black==26.3.1
+black==26.10.1
 flake8==6.1.0
 mypy==1.7.1
 pre-commit==3.6.0
