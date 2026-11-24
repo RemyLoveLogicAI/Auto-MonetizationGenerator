@@ -74,4 +74,11 @@ describe('SSRF Protection Service (validateIngestUrl)', () => {
     expect(validateIngestUrl('http://metadata.google.internal./').valid).toBe(false)
     expect(validateIngestUrl('http://foo.local./').valid).toBe(false)
   })
+
+  it('only allows the default web ports', () => {
+    expect(validateIngestUrl('https://example.com:443/a').valid).toBe(true)
+    expect(validateIngestUrl('http://example.com:80/a').valid).toBe(true)
+    expect(validateIngestUrl('http://example.com:6379/').valid).toBe(false)
+    expect(validateIngestUrl('https://example.com:8443/').valid).toBe(false)
+  })
 })

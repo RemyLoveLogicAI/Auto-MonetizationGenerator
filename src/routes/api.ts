@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 import type { AppEnv } from '../types/bindings'
-import { validateIngestUrl, fetchValidated, SsrfError } from '../services/ssrf'
+import { validateIngestUrl, fetchValidated, SsrfError, UpstreamFetchError } from '../services/ssrf'
 import { health } from '../health'
 import { metrics, healthMetrics } from '../metrics'
 
@@ -125,6 +125,7 @@ apiRouter.post('/ingestR2', async (c) => {
     res = await fetchValidated(url)
   } catch (e: unknown) {
     if (e instanceof SsrfError) return c.json({ error: 'SSRF check failed: ' + e.message }, 403)
+    if (e instanceof UpstreamFetchError) return c.text('Fetch failed: upstream unreachable', 502)
     throw e
   }
   if (!res.ok) return c.text('Fetch failed: ' + res.status + ' ' + res.statusText, 502)

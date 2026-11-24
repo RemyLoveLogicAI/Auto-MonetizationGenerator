@@ -8,6 +8,12 @@ const BLOCKED_HOSTS = new Set([
 
 const MAX_REDIRECTS = 3
 
+// Outbound requests may only target the standard web ports. Internal services
+// (Redis 6379, admin consoles 8080/8443, Docker 2375, ...) usually listen on
+// other ports, so this closes port-scanning and service-probing through the
+// ingest endpoint even for hosts that look public. '' is the scheme default.
+const ALLOWED_PORTS = new Set(['', '80', '443'])
+
 function stripBrackets(hostname: string): string {
   return hostname.startsWith('[') && hostname.endsWith(']') ? hostname.slice(1, -1) : hostname
 }
@@ -94,6 +100,10 @@ export function validateIngestUrl(targetUrl: string): { valid: boolean; reason?:
     return { valid: false, reason: `Private/reserved IP address is prohibited: ${hostname}` }
   }
 
+  if (!ALLOWED_PORTS.has(parsed.port)) {
+    return { valid: false, reason: `Port is not allowed: ${parsed.port}` }
+  }
+
   return { valid: true }
 }
 
@@ -105,9 +115,27 @@ export class SsrfError extends Error {
 }
 
 /**
+ * Raised when the upstream host could not be reached at all (DNS failure,
+ * connection refused, TLS error). Callers map it to a 502 rather than letting
+ * a raw runtime TypeError escape as a 500.
+ */
+export class UpstreamFetchError extends Error {
+  readonly cause: unknown
+  constructor(message: string, cause: unknown) {
+    super(message)
+    this.name = 'UpstreamFetchError'
+    this.cause = cause
+  }
+}
+
+/**
  * Fetches a URL only after validating it and every redirect hop.
  * Redirects are followed manually so a 302 to 169.254.169.254 cannot slip past
  * the initial check, which is the classic SSRF bypass.
+ *
+ * The request is issued from the re-serialized URL the validator parsed, never
+ * from the raw input string, and only inside the port allowlist gate, so the
+ * fetch call cannot be reached with a target that skipped validation.
  *
  * Limitation: this validates the hostname string, not the address DNS returns.
  * A name such as `127.0.0.1.nip.io` is publicly resolvable and points at
@@ -120,23 +148,36 @@ export async function fetchValidated(
   init: RequestInit = {},
   maxRedirects: number = MAX_REDIRECTS,
 ): Promise<Response> {
-  let current = targetUrl
+  try {
+    let current = targetUrl
 
-  for (let hop = 0; hop <= maxRedirects; hop++) {
-    const check = validateIngestUrl(current)
-    if (!check.valid) throw new SsrfError(check.reason ?? 'Forbidden URL')
+    for (let hop = 0; hop <= maxRedirects; hop++) {
+      const check = validateIngestUrl(current)
+      if (!check.valid) throw new SsrfError(check.reason ?? 'Forbidden URL')
 
-    const res = await fetch(current, { ...init, redirect: 'manual' })
+      // validateIngestUrl already rejects other ports; the fetch is gated on the
+      // allowlist again here so a future change to the validator cannot open it.
+      const target = new URL(current)
+      let res: Response
+      if (ALLOWED_PORTS.has(target.port)) {
+        res = await fetch(target.href, { ...init, redirect: 'manual' })
+      } else {
+        throw new SsrfError(`Port is not allowed: ${target.port}`)
+      }
 
-    if (res.status >= 300 && res.status < 400) {
-      const location = res.headers.get('location')
-      if (!location) throw new SsrfError('Redirect without a Location header')
-      current = new URL(location, current).toString()
-      continue
+      if (res.status >= 300 && res.status < 400) {
+        const location = res.headers.get('location')
+        if (!location) throw new SsrfError('Redirect without a Location header')
+        current = new URL(location, target).toString()
+        continue
+      }
+
+      return res
     }
 
-    return res
+    throw new SsrfError(`Too many redirects (limit ${maxRedirects})`)
+  } catch (error) {
+    if (error instanceof SsrfError) throw error
+    throw new UpstreamFetchError('Upstream fetch failed', error)
   }
-
-  throw new SsrfError(`Too many redirects (limit ${maxRedirects})`)
 }

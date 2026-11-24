@@ -1,4 +1,4 @@
-import { fetchValidated, SsrfError } from '../src/services/ssrf'
+import { fetchValidated, SsrfError, UpstreamFetchError } from '../src/services/ssrf'
 
 // Minimal Response-shaped stubs: the rule under test is which URLs get fetched,
 // not the Response implementation, and this keeps the test env-independent.
@@ -51,5 +51,18 @@ describe('fetchValidated (redirect-aware SSRF guard)', () => {
 
     await expect(fetchValidated('https://example.com/x', {}, 2)).rejects.toThrow(/too many redirects/i)
     expect(spy).toHaveBeenCalledTimes(3)
+  })
+
+  it('refuses a redirect to a non-standard port without requesting it', async () => {
+    const spy = jest.spyOn(globalThis, 'fetch').mockResolvedValueOnce(redirect('https://cdn.example.com:6379/'))
+
+    await expect(fetchValidated('https://example.com/x')).rejects.toThrow(/port is not allowed/i)
+    expect(spy).toHaveBeenCalledTimes(1)
+  })
+
+  it('wraps network failures in UpstreamFetchError', async () => {
+    jest.spyOn(globalThis, 'fetch').mockRejectedValueOnce(new TypeError('fetch failed'))
+
+    await expect(fetchValidated('https://example.com/x')).rejects.toBeInstanceOf(UpstreamFetchError)
   })
 })

@@ -59,16 +59,14 @@ describe('Integration Tests', () => {
 
   describe('Build and Deployment', () => {
     it('should have valid build configuration', () => {
-      // Validate build configuration exists
+      // Validate build configuration exists. Paths are string literals resolved
+      // against the working directory (jest runs from the repo root), so no
+      // file path is assembled at runtime.
       const fs = require('fs')
-      const path = require('path')
 
-      expect(fs.existsSync(path.join(process.cwd(), 'vite.config.ts'))).toBe(
-        true
-      )
+      expect(fs.existsSync('vite.config.ts')).toBe(true)
       const hasWranglerConfig =
-        fs.existsSync(path.join(process.cwd(), 'wrangler.jsonc')) ||
-        fs.existsSync(path.join(process.cwd(), 'wrangler.toml'))
+        fs.existsSync('wrangler.jsonc') || fs.existsSync('wrangler.toml')
       expect(hasWranglerConfig).toBe(true)
     })
 
